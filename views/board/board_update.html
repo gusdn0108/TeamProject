@@ -1,0 +1,31 @@
+{% include "../_header.html" %}
+    <link href="/board_detail.css" rel="stylesheet" type="text/css">
+    <title>billionaire/board</title>
+</head>
+<body>
+    <div class="navbar_logo">
+        <i class="fa-solid fa-comments-dollar"></i>
+        <a href="/">billionaire</a>
+    </div>
+    <button><a href="/board/list">Go back to list</a></button>
+    <div class="board_view">
+        <h1>UPDATE</h1>
+        <form method="post" action="/board/update">
+            <div class="viewbox">
+                <h2 class="board_write">
+                제목 : <input type="text" name="subject" value="{{subject}}">
+                </h2>
+                <ul>
+                    <li>{{nickname}}</li>
+                    <li>{{date}}</li>
+                </ul>
+                <div id="textwrap">
+                    <textarea name="content" rows="30">{{textarea}}</textarea>
+                </div>
+            </div>
+            <input type="hidden" name="idx" value="{{idx}}">
+            <input type="submit" value="수정완료" class="btn write">
+        </form>
+    </div>
+</body>
+</html>

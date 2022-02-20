@@ -1,0 +1,36 @@
+{% include "../_header.html" %}
+    <link href="/board_style.css" rel="stylesheet" type="text/css">
+    <title>billionaire/board</title>
+</head>
+<body>
+    {% include "../_navbar.html" %}
+    <!-- 게시판 페이지 -->
+    <div class="board">
+        <h1>Board</h1>
+        <table>
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>작성일</th>
+                <th>조회수</th>
+            </tr>
+            <tr>
+                <td>{{idx}}</td>
+                <td><a href="/board/view?idx={{idx}}">{{subject}}</a></td>
+                <td>{{nickname}}</td>
+                <td>{{date}}</td>
+                <td>{{hit}}</td>
+            </tr>
+        </table>
+        <button><a href="/board/write">글작성</a></button>
+        <div class="pager">
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+        </div>
+    </div>
+</body>
+</html>
+<script src="../../front-js/main.js"></script>

@@ -1,0 +1,26 @@
+{% include "../_header.html" %}
+    <link href="/user_style.css" rel="stylesheet" type="text/css">
+    <title>billionaire/login</title>
+</head>
+<body>
+    {% include "../_navbar.html" %}
+    <!-- 로그인 창 -->
+    <div class="login">
+        <h1>로그인</h1>
+        <form method="post" action="/user/login">
+            <input type="hidden" name="useridx" value="{{useridx}}">
+            <input type="hidden" name="userlevel" value="{{userlevel}}">
+            <ul>
+                <li>
+                    <input type="text" name="id" placeholder="아이디">
+                </li>
+                <li>
+                    <input type="password" name="pw" placeholder="비밀번호">
+                </li>
+            </ul>
+            <input type="submit" value="로그인">
+        </form>
+        <a href="/user/join">회원가입</a>
+    </div>
+</body>
+</html>

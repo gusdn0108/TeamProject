@@ -1,0 +1,42 @@
+{% include "../_header.html" %}
+    <link href="/admin.css" rel="stylesheet" type="text/css">
+    <title>billionaire/admin</title>
+</head>
+<body>
+    <div class="navbar_logo">
+        <i class="fa-solid fa-screwdriver-wrench"></i>
+        <a href="/">Admin</a>
+    </div>
+    <div class="admin">
+        <table>
+            <tr>
+                <th>회원번호</th>
+                <th>회원아이디</th>
+                <th>회원등급</th>
+            </tr>
+            <tr>
+                <td>{{useridx}}</td>
+                <td>{{nickname}}</td>
+                <td>{{userlevel}}</a></td>
+                <td><a href="/admin/update?useridx={{useridx}}">등급수정</a></td>
+            </tr>
+            <tr>
+                <td>{{useridx}}</td>
+                <td>{{nickname}}</td>
+                <td>{{userlevel}}</a></td>
+                <td><a href="/admin/update?useridx={{useridx}}">등급수정</a></td>
+            </tr>
+            <tr>
+                <td>{{useridx}}</td>
+                <td>{{nickname}}</td>
+                <td>{{userlevel}}</a></td>
+                <td><a href="/admin/update?useridx={{useridx}}">등급수정</a></td>
+            </tr>
+        </table>
+
+    </div>
+
+
+</body>
+
+</html>

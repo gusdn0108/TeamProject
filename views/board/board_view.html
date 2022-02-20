@@ -1,0 +1,36 @@
+{% include "../_header.html" %}
+    <link href="/board_detail.css" rel="stylesheet" type="text/css">
+    <title>billionaire/board</title>
+</head>
+<body>
+    <div class="navbar_logo">
+        <i class="fa-solid fa-comments-dollar"></i>
+        <a href="/">billionaire</a>
+    </div>
+    <button><a href="/board/list">Go back to list</a></button>
+    <div class="board_view">
+        <h1>VIEW</h1>
+        <div class="viewbox">
+            <h2>
+              {{subject}}
+            </h2>
+            <ul>
+                <li>{{nickname}}</li>
+                <li>{{date}}</li>
+                <li>{{hit}}</li>
+            </ul>
+            <div id="text">
+                {{content}}
+            </div>
+        </div>
+        <form method="post" action="/board/delete">
+            <input type="hidden" name="idx" value="{{idx}}">
+            <input type="submit" value="글삭제" class="btn delete">
+        </form>
+        <form method="get" action="/board/update">
+            <input type="hidden" name="idx" value="{{idx}}">
+            <input type="submit" value="글수정" class="btn update">
+        </form>
+    </div>
+</body>
+</html>

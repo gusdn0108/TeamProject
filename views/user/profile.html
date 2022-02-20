@@ -1,0 +1,31 @@
+{% include "../_header.html" %}
+    <link href="/user_style.css" rel="stylesheet" type="text/css">
+    <title>billionaire/profile</title>
+</head>
+<body>
+    {% include "../_navbar.html" %}
+    <!-- 프로필페이지 -->
+    <p>{{nickname}}님 환영합니다</p>
+    <div class="profile">
+        <h1>프로필</h1>
+        <input type="hidden" name="useridx" value="{{useridx}}">
+        <ul>
+            <li>
+                아이디 : {{id}}
+            </li>
+            <li>
+                이름 : {{name}}
+            </li>
+            <li>
+                성별 : {{gender}}
+            </li>
+            <li>
+                전화번호 : {{phone}}
+            </li>
+            <li>
+                핸드폰번호 : {{mobile}}
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

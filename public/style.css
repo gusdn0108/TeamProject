@@ -1,0 +1,182 @@
+:root{
+    --text1-color: #000000;
+    --text2-color: #fafafa;
+    --background1:#373737;
+    --background2:#e8eaf6;
+    --background3:#b6b8c3;
+    --accent2-color:#560027;
+    --accent3-color:#76ff03;
+}
+
+body{
+    font-family: 'Fjalla One', sans-serif;
+    margin:0;
+    width:100%;
+    height:100%;
+    cursor:url("../img/free-icon-cursor-99183.png"),auto;
+    overflow: hidden;
+}
+
+ul,li{
+    padding:0;
+    margin:0;
+    list-style:none;
+}
+
+a{
+    text-decoration: none;
+    color:var(--text1-color);
+    cursor:url("../img/free-icon-cursor-99188.png"),auto;
+}
+
+/* main page menu 구성 */
+
+.navbar > .navbar_logo{
+    padding:40px;
+    font-size: 55px;
+    font-weight:700;
+    position:absolute;
+    z-index:30;
+    top:0px;
+    left:0px;
+}
+
+.navbar > .navbar_logo i{
+    color:var(--accent2-color)
+}
+
+.navbar{
+    display: flex;
+    justify-content:flex-end;
+    height:150px;
+    font-weight: bold;
+    padding-right:30px;
+}
+
+.navbar_menu{
+    display: flex;
+    z-index:50;
+}
+
+.navbar_menu > li{
+    padding: 40px;
+    font-size: 35px;
+}
+
+.navbar_menu > li:hover > a{
+    color:var(--accent2-color)
+}
+
+.navbar_menu .snb{
+    padding-top:0.5em;
+    display: none;
+}
+
+.navbar_menu .snb > li{
+    padding:0.5em;
+}
+
+.snb.on{
+    display:block;
+}
+
+.snb > li > a:hover{
+    color:var(--accent3-color)
+}
+
+.navbar_link{
+    padding: 1em;
+    font-size: 2.5rem;
+    z-index:50;
+}
+
+.navbar_link a:hover{
+    color:var(--accent3-color);
+}
+
+
+/* 왼쪽 슬라이드 구성 */
+
+.leftSlider{
+    position:absolute;
+    width:40%;
+    height:100%;
+    top:0px;
+    left:0px;
+    overflow: hidden;
+    z-index:20;
+    cursor: url("../img/dollar.png"), auto;
+}
+
+.leftSlider > .slide > img{
+    width:100%;
+    height:100vh;
+}
+
+.leftSlider > .slide > span{
+    position: relative;
+    bottom: 200px;
+    left: 60px;
+    font-size: 3rem;
+    font-weight:700;
+    color:var(--accent2-color);
+}
+
+.leftSlider > button{   
+    font-size: 64px;
+    background:none;
+    border-style: none;
+    position:absolute;
+    top:50%;
+    cursor:url('../img/free-icon-cursor-99188.png'),auto;
+}
+
+.leftSlider > #nextbtn{
+    right:0%;
+}
+
+/* 오른쪽 배경 */
+.rightbg{
+    position: absolute;
+    top:0px;
+    transform:translateX(0px);
+    width:50%;
+    height:80%;
+    z-index:25px;
+}
+
+.rightbg.goRight{
+    transform:translateX(500px);
+    transition:all 1s;
+}
+
+/* 아래 쪽 배너 */
+.banner {
+    position:absolute;
+    width:100%;
+    height:200px;
+    bottom:0PX;
+    z-index:10;
+    line-height:200px;
+    overflow: hidden;
+}
+
+.banner span{
+    font-size:6rem;
+    font-weight:bold;
+    margin:20px;
+}
+
+#bannerwrap > .banner{
+    white-space: nowrap;
+    animation-name: bannermove;
+    animation-duration:15s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+  
+@keyframes bannermove{
+    0% {transform:translateX(0%);}
+    100% {transform:translatex(50%)}
+}
+

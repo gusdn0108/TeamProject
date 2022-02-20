@@ -1,0 +1,188 @@
+:root{
+    --text1-color: #000000;
+    --text2-color: #fafafa;
+    --background1:#373737;
+    --background2:#c2c2c2;
+    --background3:#f5f5f5;
+    --accent2-color:#560027;
+    --accent3-color:#76ff03;
+}
+
+body{
+    font-family: 'Fjalla One', sans-serif;
+    margin:0;
+    width:100%;
+    height:100%;
+    cursor:url("../img/free-icon-cursor-99183.png"),auto;
+    overflow-y: scroll;
+}
+
+ul,li{
+    padding:0;
+    margin:0;
+    list-style:none;
+}
+
+a{
+    text-decoration: none;
+    color:var(--text1-color);
+    cursor:url("../img/free-icon-cursor-99188.png"),auto;
+}
+
+.navbar> .navbar_logo{
+    padding:20px;
+    font-size: 40px;
+    font-weight:700;
+    position:absolute;
+    z-index:30;
+    top:0px;
+    left:0px;
+}
+
+.navbar > .navbar_logo i{
+    color:var(--accent2-color)
+}
+
+.navbar{
+    display: flex;
+    justify-content:flex-end;
+    height:100px;
+    font-weight: bold;
+    padding-right:30px;
+}
+
+.navbar_menu{
+    display: flex;
+    z-index:50;
+}
+
+.navbar_menu > li{
+    padding: 30px;
+    font-size: 30px;
+}
+
+.navbar_menu > li:hover > a{
+    color:var(--accent2-color)
+}
+
+.navbar_menu .snb{
+    padding-top:0.2em;
+    display: none;
+}
+
+.navbar_menu .snb > li{
+    padding:0.2em;
+    font-size: 25px;
+}
+
+.snb.on{
+    display:block;
+}
+
+.snb > li > a:hover{
+    color:var(--accent3-color)
+}
+
+.navbar_link{
+    padding: 0.8em;
+    font-size: 2rem;
+    z-index:50;
+}
+
+.navbar_link a:hover{
+    color:var(--accent3-color);
+}
+
+/* 게시판 디자인 */
+
+.board{
+    width:100%;
+    position: relative;
+}
+
+.board > h1{
+    margin:10 auto;
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+table{
+    width:90%;
+    margin:0 auto;
+    border-top:3px solid black;
+    border-collapse: collapse;
+    font-family: 'Noto Serif KR', serif;
+}
+
+table > tr,th{
+    border-bottom:1px solid black;
+    height: 50px;
+    font-size: 20px;
+    background-color:var(--background3);
+}
+
+table > tr,td{
+    text-align: center;
+    height:60px;
+    border-bottom: 1px solid var(--background2);
+}
+
+table > tr,td:nth-child(1){
+    width:10%;
+}
+
+table > tr,td:nth-child(2){
+    width:50%;
+    text-align:start;
+    padding-left:30px;
+}
+
+table > tr,td:nth-child(3){
+    width:15%;
+}
+
+table > tr,td:nth-child(4){
+    width:15%;
+}
+
+table > tr,td:nth-child(5){
+    width:10%;
+}
+
+table > tr,td > a{
+    font-weight:800;
+}
+
+table > tr,td > a:hover{
+   color:var(--accent3-color)
+}
+
+.board > button{
+    height:50px;
+    width:100px;
+    font-size: 20px;
+    font-family: 'Noto Serif KR', serif;
+    position: absolute;
+    right:5%;
+    bottom:0%;
+    border-style:none;
+    background-color: var(--background2);
+}
+
+.board > button:hover{
+    background-color: var(--accent3-color); 
+}
+
+.board > .pager{
+    position:relative;
+    width:300px;
+    top:50px;
+    left:46%;
+    font-size:20px;
+    padding-bottom:50px;
+}
+
+.board > .pager > span{
+    padding:5px;
+}
+

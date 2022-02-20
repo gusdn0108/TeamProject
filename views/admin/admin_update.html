@@ -1,0 +1,47 @@
+{% include "../_header.html" %}
+    <link href="/admin.css" rel="stylesheet" type="text/css">
+    <title>billionaire/admin</title>
+</head>
+<body>
+    <div class="navbar_logo">
+        <i class="fa-solid fa-screwdriver-wrench"></i>
+        <a href="/">Admin</a>
+    </div>
+    <div class="admin_profile">
+        <h1>회원정보수정</h1>
+        <form method="post" action="/admin/update">
+            <input type="hidden" name="useridx" value="{{useridx}}">
+            <ul>
+                <li>
+                    회원등급 : 
+                    <input type="radio" name="userlevel" id="level1" value="{{userlevel}}">
+                    <label for="level1">level1</label>
+                    <input type="radio" name="userlevel" id="level2" value="{{userlevel}}">
+                    <label for="level2">level2</label>
+                    <input type="radio" name="userlevel" id="level3" value="{{userlevel}}">
+                    <label for="level3">level3</label>
+                </li>
+                <li>
+                    아이디 : {{id}}
+                </li>
+                <li>
+                    이름 : {{name}}
+                </li>
+                <li>
+                    성별 : {{gender}}
+                </li>
+                <li>
+                    생년월일 : {{birth_year}} / {{birth_month}} / {{birth_day}}
+                </li>
+                <li>
+                    핸드폰번호 : {{mobile}}
+                </li>
+            </ul>
+            <input type="submit" value="회원정보 수정완료">
+        </form>
+        <form method="post" action="/admin/delete">
+            <input type="submit" value="이용중지">
+        </form>
+    </div>
+</body>
+</html>

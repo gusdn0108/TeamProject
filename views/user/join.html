@@ -1,0 +1,71 @@
+{% include "../_header.html" %}
+    <link href="/user_style.css" rel="stylesheet" type="text/css">
+    <title>billionaire/join</title>
+</head>
+<body>
+    {% include "../_navbar.html" %}
+    <!-- 회원가입페이지 -->
+    <div class="join">
+        <h1>회원가입</h1>
+    <form method="post" action="/user/join">
+        <input type="hidden" name="useridx" value="{{useridx}}">
+        <input type="hidden" name="userlevel" value="3">
+        <ul>
+            <li>
+                아이디
+                <input type="text" name="id">
+            </li>
+            <li>
+                비밀번호
+                <input type="password" name="pw">
+            </li>
+            <li>
+                비밀번호 확인
+                <input type="password" name="pw">
+            </li>
+            <li>
+                이름
+                <input type="text" name="name">
+            </li>
+            <li>
+                닉네임
+                <input type="text" name="nickname">
+            </li>
+            <li>
+                생년월일
+                <select id="year" name="birth_year">
+                    <option>선택하세요</option>
+                </select>
+                <select id="month" name="birth_month">
+                    <option>선택하세요</option>
+                </select> 
+                <select id="day" name="birth_day">
+                    <option>선택하세요</option>
+                </select>
+            </li>
+            <li>
+                성별
+                <input type="radio" name="gender" id="male" value="M">
+                <label for="male">남자</label>
+                <input type="radio" name="gender" id="female" value="F">
+                <label for="female">여자</label>
+            </li>
+            <li>
+                전화번호
+                <input type="text" name="phone" id="phone1" maxlength="3"> -
+                <input type="text" name="phone" id="phone2" maxlength="4"> -
+                <input type="text" name="phone" id="phone3" maxlength="4">
+            </li>
+            <li>
+                핸드폰번호
+                <input type="text" name="mobile" id="mobile1" maxlength="3"> -
+                <input type="text" name="mobile" id="mobile2" maxlength="4"> -
+                <input type="text" name="mobile" id="mobile3" maxlength="4">
+            </li>
+        </ul>
+        <input type="submit" value="회원가입">
+    </form>
+</div>
+</body>
+</html>
+<script src="../../front-js/join.js"></script>
