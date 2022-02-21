@@ -12,6 +12,8 @@ app.use(express.urlencoded({extended:true,}))
 app.use(router)
 
 
+//
+
 // 관리자 라우터 분리하기
 app.get('/admin', (req,res)=>{
     res.render('admin/admin_list')
