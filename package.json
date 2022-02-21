@@ -13,6 +13,8 @@
     "dotenv": "^16.0.0",
     "epxress": "^0.0.1-security",
     "express": "^4.17.3",
+    "express-session": "^1.17.2",
+    "memorystore": "^1.6.7",
     "mysql": "^2.18.1",
     "nunjucks": "^3.2.3"
   },
