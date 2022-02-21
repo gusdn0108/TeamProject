@@ -1,3 +1,5 @@
+document.addEventListener("DOMContentLoaded", ()=>{
+
 const userElement = document.querySelector('#user')
 const snb = document.querySelector('.snb')
 
@@ -18,14 +20,25 @@ window.onload = function(){
 }
 
 // 슬라이드 구현
-const preBtn = document.querySelector('#prebtn')
+const preBtn = document.querySelector('button#prebtn')
 const nextBtn = document.querySelector('#nextbtn')
+const slide = document.querySelectorAll('.slide')
+console.log(slide)
+
 
 preBtn.addEventListener('click',()=>{
     console.log('left')
-    
 })
 
 nextBtn.addEventListener('click',()=>{
-    console.log('next')
+    console.log('right')
+})
+
+
+
+
+
+
+
+
 })

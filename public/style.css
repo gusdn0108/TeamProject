@@ -108,10 +108,17 @@ a{
     cursor: url("../img/dollar.png"), auto;
 }
 
-.leftSlider > .slide > img{
+.leftSlider > .slidewrap{
     width:100%;
     height:100vh;
+    display:flex;
 }
+/* 
+.slidewrap > .slidephoto:nth-child(1){
+    width:10%;
+    transform:translateX(0%)
+} */
+
 
 .leftSlider > .slide > span{
     position: relative;

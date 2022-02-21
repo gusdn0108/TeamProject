@@ -1,4 +1,4 @@
--- USE teamProject1;
+USE teamProject1;
 
 -- CREATE TABLE userAccount(
 --     useridx INT NOT NULL,
@@ -29,3 +29,6 @@
 -- ) VALUES(
 --     2, '공지사항-꼭 읽어주세요', '최고관리자', '2022-02-21', '테스트하는중', '1'
 -- )
+
+ALTER TABLE userAccount DROP PRIMARY KEY;
+ALTER TABLE userAccount ADD PRIMARY KEY(useridx);
