@@ -2,12 +2,16 @@ const express = require('express')
 const app = express()
 const nunjucks = require('nunjucks')
 const PORT = process.env.PORT || 3000
+const router = express.Router()
 
 app.set('view engine','html')
 nunjucks.configure('views',{express:app,})
 app.use(express.static('public'))
 app.use(express.urlencoded({extended:true,}))
 
+const userRouter = require('./routers/user/index.js')
+
+//
 
 app.get('/',(req,res)=>{
     res.render('main')
@@ -15,17 +19,10 @@ app.get('/',(req,res)=>{
 
 // 사용자 라우터 분리하기
 
-app.get('/user/login',(req,res)=>{
+app.use('/user',(req,res)=>{
     res.render('user/login')
 })
 
-app.get('/user/join',(req,res)=>{
-    res.render('user/join')
-})
-
-app.get('/user/profile',(req,res)=>{
-    res.render('user/profile')
-})
 
 // 게시판 라우터 분리하기
 
