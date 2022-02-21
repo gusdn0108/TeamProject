@@ -1,0 +1,131 @@
+:root{
+    --text1-color: #000000;
+    --text2-color: #fafafa;
+    --background1:#373737;
+    --background2:#e8eaf6;
+    --background3:#b6b8c3;
+    --accent2-color:#560027;
+    --accent3-color:#76ff03;
+}
+
+body{
+    font-family: 'Fjalla One', sans-serif;
+    margin:0;
+    width:100%;
+    background-color: var(--text1-color);
+    color:var(--text2-color);
+    overflow:hidden;
+}
+
+ul,li{
+    padding:0;
+    margin:0;
+    list-style:none;
+}
+
+a{
+    text-decoration: none;
+    color:var(--text2-color);
+    cursor:pointer;
+}
+
+.navbar > .navbar_logo{
+    padding:40px;
+    font-size: 40px;
+    font-weight:700;
+    position:absolute;
+    z-index:30;
+    top:0px;
+    left:0px;
+}
+
+.navbar > .navbar_logo i{
+    color:var(--accent2-color)
+}
+
+.navbar{
+    display: flex;
+    justify-content:flex-end;
+    height:100px;
+    font-weight: bold;
+    padding-right:280px;
+}
+
+.navbar_menu{
+    display: flex;
+    z-index:50;
+}
+
+.navbar_menu > li{
+    padding: 40px;
+    font-size: 30px;
+}
+
+.navbar_menu > li:hover > a{
+    color:var(--accent2-color)
+}
+
+
+.navbar_menu .snb{
+    padding-top:0.5em;
+    display: none;
+}
+
+.navbar_menu .snb > li{
+    padding:0.5em;
+}
+
+.snb.on{
+    display:block;
+}
+
+.snb > li > a:hover{
+    color:var(--accent3-color)
+}
+
+.navbar_link{
+    padding: 1em;
+    font-size: 2.5rem;
+    z-index:50;
+}
+
+.navbar_link a:hover{
+    color:var(--accent3-color);
+}
+
+/* 프로필 */
+
+.profile{
+    width:100%;
+    height:100vh;
+    margin-top:50px;
+    padding-left:100px;
+    font-family: 'Noto Serif KR', serif;
+}
+
+.profilebox{
+    margin-top:50px;
+    font-size:25px;
+}
+
+.profilebox > li{
+    padding:20px;
+    width:1000px;
+    margin:10px 0;
+    border-bottom:solid 0.5px #b6b8c3;
+}
+
+.profilebox li span{
+    display: inline-block;
+    width:150px;
+    padding-right:20px;
+    text-align: end;
+}
+
+.bg > img{
+    position: fixed;
+    top:0px;
+    right:0px;
+    height:100vh;
+}
+

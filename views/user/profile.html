@@ -1,31 +1,34 @@
 {% include "../_header.html" %}
-    <link href="/user_style.css" rel="stylesheet" type="text/css">
+    <link href="/profile.css" rel="stylesheet" type="text/css">
     <title>billionaire/profile</title>
 </head>
 <body>
     {% include "../_navbar.html" %}
     <!-- 프로필페이지 -->
-    <p>{{nickname}}님 환영합니다</p>
     <div class="profile">
-        <h1>프로필</h1>
+        <h1>{{name}}님의 프로필</h1>
         <input type="hidden" name="useridx" value="{{useridx}}">
-        <ul>
+        <ul class="profilebox">
             <li>
-                아이디 : {{id}}
+                <span>아이디 : </span>{{id}}
             </li>
             <li>
-                이름 : {{name}}
+                <span>이름 : </span> {{name}}
             </li>
             <li>
-                성별 : {{gender}}
+                <span>성별 : </span> {{gender}}
             </li>
             <li>
-                전화번호 : {{phone}}
+                <span>전화번호 : </span> {{phone}}
             </li>
             <li>
-                핸드폰번호 : {{mobile}}
+                <span>핸드폰번호 : </span> {{mobile}}
             </li>
         </ul>
     </div>
+    <div class="bg">
+        <img src="../../img/bob-ghost-ZmLXBRfjSpo-unsplash (1).jpg">
+    </div>
+   
 </body>
 </html>

@@ -10,29 +10,29 @@
     <form method="post" action="/user/join">
         <input type="hidden" name="useridx" value="{{useridx}}">
         <input type="hidden" name="userlevel" value="3">
-        <ul>
+        <ul class="joinbox">
             <li>
-                아이디
+                <span>아이디</span>
                 <input type="text" name="id">
             </li>
             <li>
-                비밀번호
+                <span>비밀번호</span>
                 <input type="password" name="pw">
             </li>
             <li>
-                비밀번호 확인
+                <span>비밀번호 확인</span>
                 <input type="password" name="pw">
             </li>
             <li>
-                이름
+                <span>이름</span>
                 <input type="text" name="name">
             </li>
             <li>
-                닉네임
+                <span>닉네임</span>
                 <input type="text" name="nickname">
             </li>
-            <li>
-                생년월일
+            <li id="birth">
+                <span>생년월일</span>
                 <select id="year" name="birth_year">
                     <option>선택하세요</option>
                 </select>
@@ -43,27 +43,27 @@
                     <option>선택하세요</option>
                 </select>
             </li>
-            <li>
-                성별
+            <li id="gender">
+                <span>성별</span>
                 <input type="radio" name="gender" id="male" value="M">
                 <label for="male">남자</label>
                 <input type="radio" name="gender" id="female" value="F">
                 <label for="female">여자</label>
             </li>
-            <li>
-                전화번호
+            <li id="phone">
+                <span>전화번호</span>
                 <input type="text" name="phone" id="phone1" maxlength="3"> -
                 <input type="text" name="phone" id="phone2" maxlength="4"> -
                 <input type="text" name="phone" id="phone3" maxlength="4">
             </li>
-            <li>
-                핸드폰번호
+            <li id="mobile">
+                <span>핸드폰번호</span>
                 <input type="text" name="mobile" id="mobile1" maxlength="3"> -
                 <input type="text" name="mobile" id="mobile2" maxlength="4"> -
                 <input type="text" name="mobile" id="mobile3" maxlength="4">
             </li>
         </ul>
-        <input type="submit" value="회원가입">
+        <input type="submit" value="회원가입" id="submitBtn">
     </form>
 </div>
 </body>

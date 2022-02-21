@@ -22,18 +22,25 @@ window.onload = function(){
 // 슬라이드 구현
 const preBtn = document.querySelector('button#prebtn')
 const nextBtn = document.querySelector('#nextbtn')
-const slide = document.querySelectorAll('.slide')
-console.log(slide)
+const slider = document.querySelector('.leftSlider')
 
+function slideshow(){
+    slider.style.transform = `translateX(${(click-1)*30}%)`
+}
 
-preBtn.addEventListener('click',()=>{
-    console.log('left')
-})
-
+let click = 0;
 nextBtn.addEventListener('click',()=>{
-    console.log('right')
+    click++;
+    if(click=2){
+        click=0
+    }
+    slider.style.transform = `translateX(${(click-1)*30}%)`
 })
 
+// let click = 1;
+// nextBtn.onclick = function(){
+//     click--;
+//     if(click <)
 
 
 
