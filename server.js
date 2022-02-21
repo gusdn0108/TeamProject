@@ -12,22 +12,6 @@ app.use(express.urlencoded({extended:true,}))
 app.use(router)
 
 
-
-// 사용자 라우터 분리하기
-
-app.get('/user/login',(req,res)=>{
-    res.render('user/login')
-})
-
-app.get('/user/join',(req,res)=>{
-    res.render('user/join')
-})
-
-app.get('/user/profile',(req,res)=>{
-    res.render('user/profile')
-})
-
-
 // 관리자 라우터 분리하기
 app.get('/admin', (req,res)=>{
     res.render('admin/admin_list')
