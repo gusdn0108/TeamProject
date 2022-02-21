@@ -112,7 +112,7 @@ a{
     padding:20px;
     width:1000px;
     margin:10px 0;
-    border-bottom:solid 0.5px #b6b8c3;
+    border-bottom:dashed 0.5px var(--accent2-color)
 }
 
 .profilebox li span{

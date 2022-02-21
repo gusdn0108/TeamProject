@@ -32,11 +32,11 @@ a{
 /* main page menu 구성 */
 
 .navbar > .navbar_logo{
-    padding:40px;
-    font-size: 55px;
+    padding:30px;
+    font-size: 45px;
     font-weight:700;
     position:absolute;
-    z-index:30;
+    z-index:50;
     top:0px;
     left:0px;
 }
@@ -48,7 +48,7 @@ a{
 .navbar{
     display: flex;
     justify-content:flex-end;
-    height:150px;
+    height:120px;
     font-weight: bold;
     padding-right:30px;
 }
@@ -97,70 +97,92 @@ a{
 
 /* 왼쪽 슬라이드 구성 */
 
-.leftSlider{
+.leftSection{
     position:absolute;
+    top:0;
+    z-index:40;
+}
+
+.leftSection input[id*="slide"]{
+    display:none;
+}
+
+.leftSection .slidewrap{
+    max-width:40%;
+    overflow:hidden;
+}
+
+.leftSection .slidelist{
+    white-space:nowrap;
+    font-size:0;
+}
+
+.leftSection .slidelist > li{
+    display:inline-block;
+    vertical-align:middle;
     width:100%;
-    height:100%;
-    top:0px;
-    transform:translateX(-65%);
-    overflow: hidden;
-    z-index:20;
-    cursor: url("../img/dollar.png"), auto;
-    transition:linear 0.2s;
+    transition:all .5s;
 }
 
-.leftSlider > .slidewrap{
-    height:100%;
-    display:flex;
-    justify-content: flex-start;
+.leftSection .slidelist > li > a{
+    display:block;
+    position:relative;
 }
 
-.slidewrap > *.slidephoto{
+.leftSection .slidelist > li > a span{
+    position:absolute;
+    display: block;
+    bottom:30px;
+    left:30px;
+    color:#000000;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: 'Noto Serif KR', serif;
+}
+
+.leftSection .slidelist > li > a img{
     width:100%;
-    height:100%;
+    height:100vh;
 }
 
-.slidewrap > *.slidephoto img{
-    width:100%;
-    height:100%;
-}
-
-.leftSlider *.slidephoto > span{
-    position: absolute;
-    bottom: 200px;
-    left: 60px;
-    font-size: 2.5rem;
-    font-weight:700;
-    color:var(--accent2-color);
-}
-
-.leftSlider > button{   
-    font-size: 64px;
-    color:var(--background1);
-    background:none;
-    border-style: none;
+.leftSection .slidelist label{
     position:absolute;
     top:50%;
-    cursor:url('../img/free-icon-cursor-99188.png'),auto;
-    z-index:24
+    transform:translateY(-50%);
+    padding:20px;
+    cursor:pointer;
 }
 
-.leftSlider > #nextbtn{
-    right:0%;
+.leftSection .slidelist .left{
+    left:30px;
+    background:url('../img/left-arrow.png') center center / 100% no-repeat;
 }
+
+.leftSection .slidelist .right{
+    right:30px;
+    background:url('../img/right-arrow.png') center center / 100% no-repeat;
+}
+
+.leftSection [id="slide01"]:checked ~ .slidewrap .slidelist > li {transform:translateX(0%);}
+.leftSection [id="slide02"]:checked ~ .slidewrap .slidelist > li {transform:translateX(-100%);}
+.leftSection [id="slide03"]:checked ~ .slidewrap .slidelist > li {transform:translateX(-200%);}
 
 /* 오른쪽 배경 */
 .rightbg{
     position: absolute;
     top:0px;
     transform:translateX(0px);
-    width:50%;
-    height:80%;
-    z-index:25px;
+    width:30%;
+    z-index:15;
+}
+
+.rightbg > img{
+    display: block;
+    height:20%;
 }
 
 .rightbg.goRight{
-    transform:translateX(500px);
+    transform:translateX(80%);
     transition:all 1s;
 }
 
@@ -169,10 +191,10 @@ a{
 .banner {
     position:absolute;
     width:100%;
-    height:200px;
-    bottom:0PX;
-    z-index:10;
-    line-height:200px;
+    height:100px;
+    bottom:0;
+    z-index:30;
+    line-height:100px;
     overflow: hidden;
     white-space: nowrap;
     animation-name: bannermove;
@@ -187,9 +209,9 @@ a{
 }
 
 .banner span{
-    font-size:6rem;
+    font-size:4.5rem;
     font-weight:bold;
-    margin:20px;
+    margin:10px;
 }
 
 
