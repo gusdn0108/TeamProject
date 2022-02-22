@@ -8,7 +8,6 @@ router.get(`/list`,boardController.list)
 
 router.get(`/write`,boardController.write)
 router.post(`/write`,(req,res)=>{
-    
 })
 
 
