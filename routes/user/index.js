@@ -16,12 +16,15 @@ app.use(express.urlencoded({extended:true}))
 //
 
 const addUser = require('./joinController.js')
-const joinUser = require('./loginController.js')
-const alertmove = require('./alertmove.js')
+const loginUser = require('./loginController.js')
+const {alertmove} = require('../util/alertmove.js')
 const pool = require('../../db.js')
 
 //
 
+const userController = require('./userRouter.js')
+
+//
 let sessionObj = {
     secret: 'admin',
     resave: false,
@@ -46,24 +49,22 @@ const Auth = (req, res, next) => {
     }
 }
 
-
-
-router.get('/login', (req, res) => {
-    res.render('user/login.html')
-})
+router.get('/login', userRouter.login )
 
 router.post('/login', (req, res) => {
     let loginId = req.body.id
     let loginPw = req.body.pw
-    
-    loginUser(loginId, loginPw)
+    let isLogin = loginUser(loginId, loginPw)
+    console.log(isLogin)
+    if(isLogin){
+        res.send('로그인완료')
+    }else{
+        res.send('틀림')
+    }
 })
 
 //
-
-router.get('/join',(req,res)=>{
-    res.render('user/join')
-})
+router.get('/join',userRouter.join)
 
 router.post('/join',(req,res)=>{
     let joinId = req.body.id
@@ -74,26 +75,27 @@ router.post('/join',(req,res)=>{
     let joinGender = req.body.gender
     let joinPhone = req.body.phone
     let joinMobile = req.body.mobile
+    
 
-    // let checkId = `select * from userAccount where id = ${joinId}`
-    let checkNick = `select * from userAccount where id='${joinId}' or mobile =${joinMobile} or phone=${joinPhone} or nickname='${joinNickname}'`
-    let addData = `insert into userAccount(id, pw, name, nickname, birth, gender,phone, mobile,userlevel) values('${joinId}','${joinPw}', '${joinName}', '${joinNickname}','${birthday}', '${joinGender}', '${joinPhone}', '${joinMobile}',3)`
+    console.log(joinId,joinPw,joinName,birthday)
 
-    //addUser(joinId, joinPw, joinName, joinNickname, joinBirthday, joinBirthday, joinGender, joinPhone, joinMobile)
+    let checkId = `select * from userAccount where id='${joinId}' or nickname='${joinNickname}' or phone=${joinPhone} or mobile=${mobile}`
+    let addData = `insert into userAccount(id, pw, name, nickname, birth, gender, phone, mobile, userlevel) values('${joinId}','${joinPw}', '${joinName}', '${joinNickname}','${birthday}', '${joinGender}', '${joinPhone}', '${joinMobile}',3)`
 
     pool.getConnection( (error,conn)=> {
         if ( error ) throw error
-        conn.query(checkNick,(err,result)=>{
+        conn.query(checkId,(err,result)=>{
             console.log(result)
             if(result.length == 0) {
                 console.log('회원가입 성공')
                 conn.query(addData,(err,result)=>{
                     if(err) throw err
                     console.log(`insert 문 진입`)
-                    alertmove('/', '회원가입이 완료되었습니다.')
+                    res.send(alertmove('/user/welcome', '회원가입이 완료되었습니다.'))
                 })
             } else {
-                res.render(alertmove('/user/login',' 중복된 닉네임입니다.'))
+                console.log('회원가입 실패')
+                res.send(alertmove('/user/login','중복된 닉네임입니다.'))
             }
         })
         conn.release()
@@ -121,15 +123,15 @@ router.get('/profile', Auth, (req,res)=>{
             nickname:userNickname
         })
     }
-
     else {
         res.send(alertmove('/', '로그인 해주세요!'))
     }
 })
-
-
 //
 
+router.get('/welcome', userRouter.welcome)
+
+//
 router.post('/logout', (req, res) => {
     req.session.destroy(() => {
         req.session
@@ -137,14 +139,4 @@ router.post('/logout', (req, res) => {
     res.send(alertmove('/','로그아웃 되었습니다.'))
 })
 
-
-
-
 module.exports = router
-
-
-/*
-
-
-
-*/
