@@ -70,14 +70,14 @@ router.post('/join',(req,res)=>{
     let joinPw = req.body.pw
     let joinName = req.body.name
     let joinNickname = req.body.nickname
-    let joinBirthday = req.body.Birthday
+    let joinBirthday = req.body.birth_year+req.body.birth_month+req.body.birth_day
     let joinGender = req.body.gender
     let joinPhone = req.body.phone
     let joinMobile = req.body.Mobile
 
     let checkId = `select * from userAccount where id = ${joinId}`
     let checkNick = `select * from userAccount where nickname = ${joinNickname}`
-    let addData = `insert into members(id, pw, name, nickname, birth, gender, phone, mobile) values('${id}', 
+    let addData = `insert into userAccount(id, pw, name, nickname, birth, gender, phone, mobile) values('${id}', 
     ${pw}, ${name}, ${birthday}, ${gender}, ${phone}, ${mobile})`
 
     //addUser(joinId, joinPw, joinName, joinNickname, joinBirthday, joinBirthday, joinGender, joinPhone, joinMobile)
@@ -155,3 +155,10 @@ router.post('/logout', (req, res) => {
 
 
 module.exports = router
+
+
+/*
+
+
+
+*/
