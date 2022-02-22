@@ -21,6 +21,10 @@ const {alertmove} = require('../util/alertmove.js')
 const pool = require('../../db.js')
 
 //
+
+const userController = require('./userRouter.js')
+
+//
 let sessionObj = {
     secret: 'admin',
     resave: false,
@@ -45,9 +49,7 @@ const Auth = (req, res, next) => {
     }
 }
 
-router.get('/login', (req, res) => {
-    res.render('user/login.html')
-})
+router.get('/login', userRouter.login )
 
 router.post('/login', (req, res) => {
     let loginId = req.body.id
@@ -62,9 +64,7 @@ router.post('/login', (req, res) => {
 })
 
 //
-router.get('/join',(req,res)=>{
-    res.render('user/join')
-})
+router.get('/join',userRouter.join)
 
 router.post('/join',(req,res)=>{
     let joinId = req.body.id
@@ -127,6 +127,9 @@ router.get('/profile', Auth, (req,res)=>{
         res.send(alertmove('/', '로그인 해주세요!'))
     }
 })
+//
+
+router.get('/welcome', userRouter.welcome)
 
 //
 router.post('/logout', (req, res) => {
