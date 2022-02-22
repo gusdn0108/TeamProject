@@ -22,9 +22,6 @@ const pool = require('../../db.js')
 
 //
 
-let loginresult
-let userInfo = []
-
 let sessionObj = {
     secret: 'admin',
     resave: false,
@@ -39,7 +36,6 @@ let sessionObj = {
 
 app.use(session(sessionObj))
 
-
 const Auth = (req, res, next) => {
     let {user} = req.session
     if(user != undefined) {
@@ -50,7 +46,7 @@ const Auth = (req, res, next) => {
     }
 }
 
-// 세션 기능 어떻게 하지..? ㅠㅠ
+
 
 router.get('/login', (req, res) => {
     res.render('user/login.html')
@@ -62,7 +58,6 @@ router.post('/login', (req, res) => {
     
     loginUser(loginId, loginPw)
 })
-
 
 //
 
@@ -129,7 +124,6 @@ router.get('/profile', Auth, (req,res)=>{
     let userMobile = mobile
     let userNickname = Nickname
 
-    // req.session.id?
 
     if ( user != undefined ) {
         res.render('user/profile', {
