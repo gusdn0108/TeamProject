@@ -4,7 +4,6 @@ function appendYear(){
     let date = new Date();
     let year = date.getFullYear();
     let selectValue = document.getElementById('year');
-    console.log(selectValue)
     let optionidx = 0;
 
     for(let i=year-100; i<=year; i++){
@@ -17,7 +16,11 @@ function appendMonth(){
     let optionidx = 0;
 
     for(let i=1; i<=12; i++){
-        selectValue.add(new Option(i+"월",i),optionidx++)
+        if(i<10){
+            i='0'+i
+            selectValue.add(new Option(i+"월",i),optionidx++)
+        }else{
+            selectValue.add(new Option(i+"월",i),optionidx++)}
     }
 }
 
@@ -26,7 +29,12 @@ function appendDay(){
     let optionidx = 0;
     
     for(let i=1; i<=31; i++){
-        selectValue.add(new Option(i+"일",i),optionidx++)
+        if(i<10){
+            i='0'+i
+            selectValue.add(new Option(i+"일",i),optionidx++)
+        }else{
+            selectValue.add(new Option(i+"일",i),optionidx++)
+        }
     }
 }
 
