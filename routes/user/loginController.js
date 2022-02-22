@@ -5,15 +5,17 @@ const { alertmove } = require("./alertmove")
 
 let loginUser = function(id, pw) {
     
-    let loginSql = `select * from members where id = '${id}' and pw = '${pw}' ;`
+    let loginSql = `select * from userAccount where id = '${id}' and pw = '${pw}' ;`
+
     pool.getConnection((err, conn) => {
         conn.query(loginSql,
         (err, result) => {
             if(!err) {
                 if(result.length != 0) {
-                    console.log(result[0].name)
+                    console.log(result)
                     res.send(alertmove('/', '로그인 되었습니다.'))
                 }
+
                 else {
                     res.send(alertmove('user/login', 'id/pw를 확인해주세요.'))
                 }

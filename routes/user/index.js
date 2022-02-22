@@ -70,48 +70,34 @@ router.post('/join',(req,res)=>{
     let joinPw = req.body.pw
     let joinName = req.body.name
     let joinNickname = req.body.nickname
-    let joinBirthday = req.body.birth_year+req.body.birth_month+req.body.birth_day
+    let birthday = req.body.birth_year + req.body.birth_month + req.body.birth_day;
     let joinGender = req.body.gender
     let joinPhone = req.body.phone
-    let joinMobile = req.body.Mobile
+    let joinMobile = req.body.mobile
 
-    let checkId = `select * from userAccount where id = ${joinId}`
-    let checkNick = `select * from userAccount where nickname = ${joinNickname}`
-    let addData = `insert into userAccount(id, pw, name, nickname, birth, gender, phone, mobile) values('${id}', 
-    ${pw}, ${name}, ${birthday}, ${gender}, ${phone}, ${mobile})`
+    // let checkId = `select * from userAccount where id = ${joinId}`
+    let checkNick = `select * from userAccount where id='${joinId}' or mobile =${joinMobile} or phone=${joinPhone} or nickname='${joinNickname}'`
+    let addData = `insert into userAccount(id, pw, name, nickname, birth, gender,phone, mobile,userlevel) values('${joinId}','${joinPw}', '${joinName}', '${joinNickname}','${birthday}', '${joinGender}', '${joinPhone}', '${joinMobile}',3)`
 
     //addUser(joinId, joinPw, joinName, joinNickname, joinBirthday, joinBirthday, joinGender, joinPhone, joinMobile)
 
-    pool.getConnection((err, conn) => {
-        conn.query(checkId, (err, result) => {
-            if(result.length == 0 ) {
-                conn.query(checkNick,
-                    (err, result) => {
-                        if (result.length == 0) {
-                            console.log('회원가입 성공')
-                            conn.query(addData, (err, result) => {
-                                if(!err) {
-                                    console.log(result)
-                                    alertmove('/', '회원가입이 완료되었습니다.')
-                                }
-                                else {throw err}
-                            })
-                        }
-                        else {
-                            console.log('닉네임 중복')
-                            alertmove('/user/login',' 중복된 닉네임입니다.')
-                        }
-                    })
-            }
-            else {
-                console.log('중복된 id입니다.')
-                alertmove('/user/login', '중복된 id입니다.')
+    pool.getConnection( (error,conn)=> {
+        if ( error ) throw error
+        conn.query(checkNick,(err,result)=>{
+            console.log(result)
+            if(result.length == 0) {
+                console.log('회원가입 성공')
+                conn.query(addData,(err,result)=>{
+                    if(err) throw err
+                    console.log(`insert 문 진입`)
+                    alertmove('/', '회원가입이 완료되었습니다.')
+                })
+            } else {
+                res.render(alertmove('/user/login',' 중복된 닉네임입니다.'))
             }
         })
+        conn.release()
     })
-
-    conn.release()
-
 })
 
 //
