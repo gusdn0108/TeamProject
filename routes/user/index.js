@@ -127,6 +127,7 @@ router.get('/profile', Auth, (req,res)=>{
         res.send(alertmove('/', '로그인 해주세요!'))
     }
 })
+
 //
 
 router.get('/welcome', userRouter.welcome)
