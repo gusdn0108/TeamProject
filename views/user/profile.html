@@ -6,23 +6,23 @@
     {% include "../_navbar.html" %}
     <!-- 프로필페이지 -->
     <div class="profile">
-        <h1>{{name}}님의 프로필</h1>
+        <h1>{{user.nickname}}님의 프로필</h1>
         <input type="hidden" name="useridx" value="{{useridx}}">
         <ul class="profilebox">
             <li>
-                <span>아이디 : </span>{{id}}
+                <span>아이디 : </span>{{user.id}}
             </li>
             <li>
-                <span>이름 : </span> {{name}}
+                <span>이름 : </span> {{user.name}}
             </li>
             <li>
-                <span>성별 : </span> {{gender}}
+                <span>성별 : </span> {{user.gender}}
             </li>
             <li>
-                <span>전화번호 : </span> {{phone}}
+                <span>전화번호 : </span> {{user.phone}}
             </li>
             <li>
-                <span>핸드폰번호 : </span> {{mobile}}
+                <span>핸드폰번호 : </span> {{user.mobile}}
             </li>
         </ul>
     </div>
