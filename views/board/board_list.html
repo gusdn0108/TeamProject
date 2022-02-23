@@ -15,15 +15,15 @@
                 <th>작성일</th>
                 <th>조회수</th>
             </tr>
-            <tr>
             {% for item in result %}
+            <tr> 
                 <td>{{item.idx}}</td>
                 <td><a href="/board/view?idx={{idx}}">{{item.subject}}</a></td>
                 <td>{{item.nickname}}</td>
                 <td>{{item.date}}</td>
                 <td>{{item.hit}}</td>
-            {% endfor %}
             </tr>
+            {% endfor %}
         </table>
         <button><a href="/board/write">글작성</a></button>
         <div class="pager">
