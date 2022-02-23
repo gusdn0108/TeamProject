@@ -3,9 +3,6 @@ const app = express()
 const router = express.Router()
 const nunjucks = require('nunjucks')
 
-// const session = require('express-session')
-
-// const Memorystore = require('memorystore')(session)
 
 app.set('view engine', 'html')
 nunjucks.configure('views', {express:app})
