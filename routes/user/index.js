@@ -3,9 +3,9 @@ const app = express()
 const router = express.Router()
 const nunjucks = require('nunjucks')
 
-const session = require('express-session')
+// const session = require('express-session')
 
-const Memorystore = require('memorystore')(session)
+// const Memorystore = require('memorystore')(session)
 
 app.set('view engine', 'html')
 nunjucks.configure('views', {express:app})
@@ -19,21 +19,8 @@ const addUser = require('./joinController.js')
 const loginUser = require('./loginController.js')
 const {alertmove} = require('../util/alertmove.js')
 const pool = require('../../db.js')
+const loginController = require('./loginController')
 
-//
-let sessionObj = {
-    secret: 'admin',
-    resave: false,
-    saveUninitialized:true,
-    store:new Memorystore({checkperiod: 30*60*1000}),
-    cookie: {
-        maxAge: 30*60*1000
-    }
-}
-
-// memorystroe가 아닌 filestore를 사용?
-
-app.use(session(sessionObj))
 
 const Auth = (req, res, next) => {
     let {user} = req.session
@@ -45,23 +32,10 @@ const Auth = (req, res, next) => {
     }
 }
 
-router.get('/login', (req, res) => {
-    res.render('user/login.html')
-})
+router.get('/login', loginController.login)
 
-router.post('/login', (req, res) => {
-    let loginId = req.body.id
-    let loginPw = req.body.pw
-    let isLogin = loginUser(loginId, loginPw)
-    console.log(isLogin)
-    if(isLogin){
-        res.send('로그인완료')
-    }else{
-        res.send('틀림')
-    }
-})
+router.post('/login', loginController.loginAction)
 
-//
 router.get('/join',(req,res)=>{
     res.render('user/join')
 })
@@ -129,7 +103,7 @@ router.get('/profile', Auth, (req,res)=>{
 })
 
 //
-router.post('/logout', (req, res) => {
+router.get('/logout', (req, res) => {
     req.session.destroy(() => {
         req.session
     })
