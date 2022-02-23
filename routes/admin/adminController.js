@@ -11,7 +11,7 @@ exports.list= (req,res) =>{
                    
                     // const _result = Array.from(result)
                     for (let i = 0; i < result.length; i++) {
-                        const element = result[i];                       
+                        const element = result[i];                      
                         result.splice(i,1,{...element,button:`/admin/update?useridx=${element.useridx}`})
                        
                     }
@@ -34,17 +34,17 @@ exports.update =(req,res)=>{
         const {useridx} = req.param
         console.log(useridx)
         res.render(`admin/admin_update`)
-        // pool.getConnection((err,conn)=>{
-        //     conn.query(SQL.getAdminUserOne,"",(error,result)=>{
-        //         if(!error) {
+        pool.getConnection((err,conn)=>{
+            conn.query(SQL.getAdminUserOne,"",(error,result)=>{
+                if(!error) {
 
-        //             res.render(`admin/admin_update`,{
-        //                 result
-        //             })
-        //         }else throw error ;
-        //         })
-        //     conn.release();
-        //     })
+                    res.render(`admin/admin_update`,{
+                        result
+                    })
+                }else throw error ;
+                })
+            conn.release();
+            })
     } catch (error) {
         console.log(error)
     }
