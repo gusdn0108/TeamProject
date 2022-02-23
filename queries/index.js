@@ -4,7 +4,9 @@ const SQL = {
     boardView : 'SELECT subject, nickname, date, content, idx FROM boardData',
     // boardDelete : 'DELETE FROM boardData WHERE idx = ${idx} ;',
     // boardUpdate : 'UPDATE boardData SET 컬럼1=값1, 컬럼2=값2 WHERE idx = ${idx}'
-    }
+    getAdminUserList: 'SELECT * FROM userAccount',
+    getAdminUserOne: 'SELECT * FROM WHERE useridx=? userAccount',
+}
 
 
 module.exports = SQL

@@ -10,11 +10,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.19.2",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "express-session": "^1.17.2",
     "memorystore": "^1.6.7",
     "mysql": "^2.18.1",
+    "net-tools": "^1.0.1",
     "nunjucks": "^3.2.3"
   },
   "repository": {
@@ -24,5 +26,6 @@
   "bugs": {
     "url": "https://github.com/yjleeinkr/TeamProject/issues"
   },
-  "homepage": "https://github.com/yjleeinkr/TeamProject#readme"
+  "homepage": "https://github.com/yjleeinkr/TeamProject#readme",
+  "devDependencies": {}
 }
