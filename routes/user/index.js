@@ -80,7 +80,8 @@ router.post('/join',(req,res)=>{
     console.log(joinId,joinPw,joinName,birthday)
 
     let checkId = `select * from userAccount where id='${joinId}' or nickname='${joinNickname}' or phone=${joinPhone} or mobile=${mobile}`
-    let addData = `insert into userAccount(id, pw, name, nickname, birth, gender, phone, mobile, userlevel) values('${joinId}','${joinPw}', '${joinName}', '${joinNickname}','${birthday}', '${joinGender}', '${joinPhone}', '${joinMobile}',3)`
+    let addData = `insert into userAccount(id, pw, name, nickname, birth, gender, phone, mobile, userlevel) 
+    values('${joinId}','${joinPw}', '${joinName}', '${joinNickname}','${birthday}', '${joinGender}', '${joinPhone}', '${joinMobile}',3)`
 
     pool.getConnection( (error,conn)=> {
         if ( error ) throw error
@@ -123,10 +124,8 @@ router.get('/profile', Auth, (req,res)=>{
             nickname:userNickname
         })
     }
-    else {
-        res.send(alertmove('/', '로그인 해주세요!'))
-    }
 })
+
 //
 
 router.get('/welcome', userRouter.welcome)
