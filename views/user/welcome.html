@@ -1,14 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+{% include "../_header.html" %}
+    <link href="/profile.css" rel="stylesheet" type="text/css">
+    <title>WELCOME</title>
 </head>
 <body>
+    <div id="welcome">
+    {{user.id}}님 환영합니다.
+    <img src="../../img/GettyImages-76133201-1-2048x1152.jpg">
+    </div>
     welcome! 
-    
     {{id}}
     <br>
     {{name}}
@@ -18,6 +17,5 @@
     {{phone}}
     <br>
     {{mobile}}
-
 </body>
 </html>

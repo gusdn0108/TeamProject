@@ -22,6 +22,7 @@ exports.loginAction = (req,res) => {
                     req.session.user = {...loginData}
                     const {user} = req.session
                     console.log(req.session)
+                    console.log(user.id)
                     res.render('main.html',{
                         user,
                     })

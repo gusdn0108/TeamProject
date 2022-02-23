@@ -20,18 +20,15 @@
              <tbody>
                {% for item in result %}
                <tr>
-                   <td>{{item.useridx}}</td>
-               <td>{{item.nickname}}</td>
-               <td>{{item.name}}</td>
-               <td>{{item.userlevel}}</td>
-               <td><a href={{item.button}}>등급수정</a></td>
+                    <td>{{item.useridx}}</td>
+                    <td>{{item.nickname}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.userlevel}}</td>
+                    <td><a href={{item.button}}>등급수정</a></td>
                </tr>
                {% endfor %}
              </tbody>
          </table>
     </div>
-
-    
 </body>
-
 </html>

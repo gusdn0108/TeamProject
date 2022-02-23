@@ -1,6 +1,5 @@
 const { alertmove } = require('./alertmove.js')
 
-
 const Auth = (req, res, next) => {
     let {user} = req.session
     if(user != undefined) {
@@ -11,4 +10,4 @@ const Auth = (req, res, next) => {
     }
 }
 
-module.exports = Auth
+module.exports = Auth;
