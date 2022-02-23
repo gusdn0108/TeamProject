@@ -3,6 +3,7 @@ const router = express.Router()
 const boardController = require(`./board.Controller`)
 
 
+
 router.get(`/list`,boardController.list)
 
 
