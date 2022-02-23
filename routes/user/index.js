@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const router = express.Router()
 const nunjucks = require('nunjucks')
+const Auth = require('../util/auth')
 
 
 app.set('view engine', 'html')
@@ -18,16 +19,6 @@ const {alertmove} = require('../util/alertmove.js')
 const pool = require('../../db.js')
 const loginController = require('./loginController')
 
-
-const Auth = (req, res, next) => {
-    let {user} = req.session
-    if(user != undefined) {
-        next()
-    }
-    else {
-        res.send(alertmove('/user/login', '로그인 해주세요!'))
-    }
-}
 
 router.get('/login', loginController.login)
 
@@ -99,7 +90,11 @@ router.get('/profile', Auth, (req,res)=>{
     }
 })
 
-//
+//웰컴 라우터 (지우기)
+router.get('/welcome',(req,res)=>{
+    res.render('user/welcome.html')
+})
+
 router.get('/logout', (req, res) => {
     req.session.destroy(() => {
         req.session

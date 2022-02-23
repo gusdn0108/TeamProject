@@ -9,20 +9,26 @@
     </div>
     <div class="admin">
         <table>
-            <tr>
-                <th>회원번호</th>
-                <th>회원아이디</th>
-                <th>회원이름</th>
-                <th>회원등급</th>
-            </tr>
-            <tr>
-                <td>{{useridx}}</td>
-                <td>{{nickname}}</td>
-                <td>{{name}}</td>
-                <td>{{userlevel}}</a></td>
-                <td><a href="/admin/update?useridx={{useridx}}">등급수정</a></td>
-            </tr>
-        </table>
+            <thead>
+               <tr>
+                   <th>회원번호</th>
+                   <th>회원아이디</th>
+                   <th>회원이름</th>
+                   <th colspan="2">회원등급</th>
+               </tr>
+            </thead>
+             <tbody>
+               {% for item in result %}
+               <tr>
+                    <td>{{item.useridx}}</td>
+                    <td>{{item.nickname}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.userlevel}}</td>
+                    <td><a href={{item.button}}>등급수정</a></td>
+               </tr>
+               {% endfor %}
+             </tbody>
+         </table>
     </div>
 </body>
 

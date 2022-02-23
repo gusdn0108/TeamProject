@@ -17,9 +17,9 @@ let sessionObj = {
     secret: 'admin',
     resave: false,
     saveUninitialized:true,
-    store:new Memorystore({checkperiod: 30*60*1000}),
+    store:new Memorystore({checkperiod: 300*60*1000}),
     cookie: {
-        maxAge: 30*60*1000
+        maxAge: 300*60*1000
     }
 }
 
