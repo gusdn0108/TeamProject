@@ -114,7 +114,7 @@ a{
 }
 
 .joinbox li{
-    font-size:17px;
+    font-size:20px;
     padding-bottom:20px;
 }
 
@@ -125,6 +125,7 @@ a{
 
 .joinbox li input{
     font-size : 20px;
+    height:25px;
     width:75%;
     border:solid 1px var(--background2);
 }
@@ -142,19 +143,24 @@ a{
 
 .joinbox #gender input{
     width:5%;
+    height:17px;
 }
 
 .joinbox #phone input{
-    width:20%;
+    width:40%;
+    font-size: 17px;
+    font-family: 'Noto Serif KR', serif;
 }
 
 .joinbox #mobile input{
-    width:20%;
+    width:40%;
+    font-size: 17px;
+    font-family: 'Noto Serif KR', serif;
 }
 
 #submitBtn{
     width: 50%;
-    height:40px;
+    height:50px;
     font-size: 20px;
     transform: translateX(50%);
     font-family: 'Noto Serif KR', serif;

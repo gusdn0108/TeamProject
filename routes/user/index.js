@@ -3,9 +3,6 @@ const app = express()
 const router = express.Router()
 const nunjucks = require('nunjucks')
 
-const session = require('express-session')
-
-const Memorystore = require('memorystore')(session)
 
 app.set('view engine', 'html')
 nunjucks.configure('views', {express:app})
@@ -19,7 +16,9 @@ const addUser = require('./joinController.js')
 const loginUser = require('./loginController.js')
 const {alertmove} = require('../util/alertmove.js')
 const pool = require('../../db.js')
+const loginController = require('./loginController')
 
+<<<<<<< HEAD
 //
 
 const userController = require('./userRouter.js')
@@ -38,6 +37,8 @@ let sessionObj = {
 // memorystroe가 아닌 filestore를 사용?
 
 app.use(session(sessionObj))
+=======
+>>>>>>> origin/main
 
 const Auth = (req, res, next) => {
     let {user} = req.session
@@ -49,22 +50,22 @@ const Auth = (req, res, next) => {
     }
 }
 
+<<<<<<< HEAD
 router.get('/login', userRouter.login )
+=======
+router.get('/login', loginController.login)
+>>>>>>> origin/main
 
-router.post('/login', (req, res) => {
-    let loginId = req.body.id
-    let loginPw = req.body.pw
-    let isLogin = loginUser(loginId, loginPw)
-    console.log(isLogin)
-    if(isLogin){
-        res.send('로그인완료')
-    }else{
-        res.send('틀림')
-    }
-})
+router.post('/login', loginController.loginAction)
 
+<<<<<<< HEAD
 //
 router.get('/join',userRouter.join)
+=======
+router.get('/join',(req,res)=>{
+    res.render('user/join')
+})
+>>>>>>> origin/main
 
 router.post('/join',(req,res)=>{
     let joinId = req.body.id
@@ -129,11 +130,15 @@ router.get('/profile', Auth, (req,res)=>{
 })
 
 //
+<<<<<<< HEAD
 
 router.get('/welcome', userRouter.welcome)
 
 //
 router.post('/logout', (req, res) => {
+=======
+router.get('/logout', (req, res) => {
+>>>>>>> origin/main
     req.session.destroy(() => {
         req.session
     })
