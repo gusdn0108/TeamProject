@@ -1,19 +1,19 @@
 -- CREATE DATABASE tp1
 -- USE tp1
 
-CREATE TABLE userAccount(
-    useridx INT NOT NULL AUTO_INCREMENT,
-    userlevel INT NOT NULL,
-    id VARCHAR(10) NOT NULL ,
-    pw VARCHAR(10) NOT NULL,
-    name VARCHAR(10) NOT NULL,
-    nickname VARCHAR(10) NOT NULL,
-    birth DATE,
-    gender CHAR(1),
-    phone VARCHAR(11),
-    mobile VARCHAR(11) NOT NULL,
-    PRIMARY KEY(useridx)
-);
+-- CREATE TABLE userAccount(
+--     useridx INT NOT NULL AUTO_INCREMENT,
+--     userlevel INT NOT NULL,
+--     id VARCHAR(10) NOT NULL ,
+--     pw VARCHAR(10) NOT NULL,
+--     name VARCHAR(10) NOT NULL,
+--     nickname VARCHAR(10) NOT NULL,
+--     birth DATE,
+--     gender CHAR(1),
+--     phone VARCHAR(11),
+--     mobile VARCHAR(11) NOT NULL,
+--     PRIMARY KEY(useridx)
+-- );
 
 CREATE TABLE boardData(
     idx INT NOT NULL AUTO_INCREMENT,
@@ -28,3 +28,7 @@ CREATE TABLE boardData(
 ALTER TABLE userAccount MODIFY mobile CHAR(11) UNIQUE;
 ALTER TABLE userAccount MODIFY phone CHAR(11) UNIQUE;
 ALTER TABLE userAccount MODIFY id VARCHAR(10) UNIQUE;
+
+
+-- INSERT INTO boardData (subject, nickname, content, date, hit) Values ('hi','jane','you can do it','2022-02-20',1) ;
+-- INSERT INTO boardData (subject, nickname, content, date, hit) Values ('sleepless','sara','let me go','2022-02-20',2) ;

@@ -16,11 +16,13 @@
                 <th>조회수</th>
             </tr>
             <tr>
-                <td>{{idx}}</td>
-                <td><a href="/board/view?idx={{idx}}">{{subject}}</a></td>
-                <td>{{nickname}}</td>
-                <td>{{date}}</td>
-                <td>{{hit}}</td>
+            {% for item in result %}
+                <td>{{item.idx}}</td>
+                <td><a href="/board/view?idx={{idx}}">{{item.subject}}</a></td>
+                <td>{{item.nickname}}</td>
+                <td>{{item.date}}</td>
+                <td>{{item.hit}}</td>
+            {% endfor %}
             </tr>
         </table>
         <button><a href="/board/write">글작성</a></button>
