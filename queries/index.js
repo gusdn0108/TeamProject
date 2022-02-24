@@ -6,6 +6,7 @@ const SQL = {
     boardUpdate : 'UPDATE boardData SET subject=?, content=? WHERE idx = ?',
     getAdminUserList: 'SELECT * FROM userAccount',
     getAdminUserOne: 'SELECT * FROM userAccount WHERE useridx=?',
+    setAdminUserUpdate:'UPDATE userAccount SET userlevel=?, name=?, mobile=?  WHERE id = ?'
 }
 
 

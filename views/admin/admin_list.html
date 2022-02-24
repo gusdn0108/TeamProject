@@ -10,7 +10,7 @@
     </div>
     <div class="admin">
       <h1>Member list</h1>
-        <table>
+        <table class="table table-sm table-hover">
             <thead>
                <tr>
                    <th>회원번호</th>
@@ -26,7 +26,7 @@
                     <td>{{item.nickname}}</td>
                     <td>{{item.name}}</td>
                     <td>{{item.userlevel}}</td>
-                    <td><a class="btn btn-primary btn-sm" href={{item.button}}>등급수정</a></td>
+                    <td><a class="btn btn-danger btn-sm" href={{item.button}}>등급수정</a></td>
                </tr>
                {% endfor %}
              </tbody>
