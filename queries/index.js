@@ -5,7 +5,14 @@ const SQL = {
     boardDelete : 'DELETE FROM boardData WHERE idx = ?',
     boardUpdate : 'UPDATE boardData SET subject=?, content=? WHERE idx = ?',
     getAdminUserList: 'SELECT * FROM userAccount',
-    getAdminUserOne: 'SELECT * FROM userAccount WHERE useridx=?',
+    getAdminUserOne: 'SELECT * FROM WHERE useridx=? userAccount',
+
+    // user
+
+    loginSql : `select * from userAccount where id = ? and pw = ?;`,
+    profileCheck : `select * from userAccount where id = ?`,
+    checkId : `select * from userAccount where id=? or nickname=? or phone=? or mobile=?`,
+    addData : `insert into userAccount(id, pw, name, nickname, birth, gender, phone, mobile, userlevel) values(?,?, ?, ?,?, ?, ?, ?,3)`,
 }
 
 
