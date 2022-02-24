@@ -8,8 +8,8 @@
         <a href="/">Admin</a>
     </div>
     <div class="admin">
-        <table>
-            <thead>
+        <table class="table table-sm table-hover">
+            <thead class="trxt-center">
                <tr>
                    <th>회원번호</th>
                    <th>회원아이디</th>
@@ -20,11 +20,11 @@
              <tbody>
                {% for item in result %}
                <tr>
-                    <td>{{item.useridx}}</td>
+                    <td class="text-center">{{item.useridx}}</td>
                     <td>{{item.nickname}}</td>
                     <td>{{item.name}}</td>
                     <td>{{item.userlevel}}</td>
-                    <td><a href={{item.button}}>등급수정</a></td>
+                    <td><a class="btn btn-primary btn-sm" href={{item.button}}>등급수정</a></td>
                </tr>
                {% endfor %}
              </tbody>

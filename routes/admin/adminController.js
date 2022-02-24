@@ -31,16 +31,17 @@ exports.list= (req,res) =>{
 
 exports.update =(req,res)=>{
     try {
-        const {useridx} = req.param
-        console.log(useridx)
-        res.render(`admin/admin_update`)
+        const {useridx} = req.query
         pool.getConnection((err,conn)=>{
-            conn.query(SQL.getAdminUserOne,"",(error,result)=>{
-                if(!error) {
-
-                    res.render(`admin/admin_update`,{
-                        result
-                    })
+            conn.query(SQL.getAdminUserOne,[useridx],(error,result)=>{
+                if(!error) {   
+                    
+                    let temp = { id: result[0].id, name: result[0].name, gender:result[0].gender, 
+                        phone:result[0].phone, mobile:result[0].mobile, nickname:result[0].nickname, birth:result[0].birth }                
+                  
+                        res.render('admin/admin_update', {
+                            user:temp
+                        }) 
                 }else throw error ;
                 })
             conn.release();
@@ -51,4 +52,14 @@ exports.update =(req,res)=>{
 
 
     
+}
+
+exports.updateAction =(req,res)=>{
+    try {
+        const userData = req.body
+        console.log(userData)
+        res.send()
+    } catch (error) {
+        console.log(error)
+    }
 }

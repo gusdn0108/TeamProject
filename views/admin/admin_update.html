@@ -7,6 +7,7 @@
         <i class="fa-solid fa-screwdriver-wrench"></i>
         <a href="/">Admin</a>
     </div>
+   
     <div class="admin_profile">
         <h1>회원정보수정</h1>
         <form method="post" action="/admin/update">
@@ -22,19 +23,19 @@
                     <label for="level3">level3</label>
                 </li>
                 <li>
-                    아이디 : {{id}}
+                   아이디 : <input value={{user.id}} />
                 </li>
                 <li>
-                    이름 : {{name}}
+                    이름 : <input value={{user.name}} />
                 </li>
                 <li>
-                    성별 : {{gender}}
+                    성별 : <input value={{user.gender}} />
                 </li>
                 <li>
-                    생년월일 : {{birth_year}} / {{birth_month}} / {{birth_day}}
+                    생년월일 : <input type="datetime-local" value={{user.birth}}  /> 
                 </li>
                 <li>
-                    핸드폰번호 : {{mobile}}
+                    핸드폰번호 :  <input value={{user.mobile}}  />
                 </li>
             </ul>
             <input type="submit" value="회원정보 수정완료">
