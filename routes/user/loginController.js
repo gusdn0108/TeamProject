@@ -32,9 +32,7 @@ exports.loginAction = (req,res) => {
                     res.send(alertmove('/user/login','비번확인바람'))
                 }
             }
-            else {
-                console.log('aa')
-            }
+            else {throw err}
         })
         conn.release();
     })
@@ -60,7 +58,7 @@ exports.joinAction = (req, res) => {
     
     console.log(joinId,joinPw,joinName,birthday)
 
-    let param1 = [`${joinId}`,`${joinPhone}`, `${joinMobile}`]
+    let param1 = [`${joinId}`,`${joinNickname}`, `${joinPhone}`, `${joinMobile}`]
     let param2 = [`${joinId}`,`${joinPw}`, `${joinName}`,`${joinNickname}`,`${birthday}`, `${joinGender}`,`${joinPhone}`,`${joinMobile}`]
 
     pool.getConnection( (error,conn)=> {
@@ -77,7 +75,7 @@ exports.joinAction = (req, res) => {
             }
             else {
                 console.log('회원가입 실패')
-                res.send(alertmove('/user/login','중복된 아이디/닉네임/전화번호 입니다.'))
+                res.send(alertmove('/user/join','입력한 정보를 확인해주세요.'))
             }
         })
         conn.release()

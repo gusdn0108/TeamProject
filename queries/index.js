@@ -11,7 +11,7 @@ const SQL = {
 
     loginSql : `select * from userAccount where id = ? and pw = ?;`,
     profileCheck : `select * from userAccount where id = ?`,
-    checkId : `select * from userAccount where id=? or phone=? or mobile=?`,
+    checkId : `select * from userAccount where id=? or nickname=? or phone=? or mobile=?`,
     addData : `insert into userAccount(id, pw, name, nickname, birth, gender, phone, mobile, userlevel) values(?,?, ?, ?,?, ?, ?, ?,3)`,
 }
 
