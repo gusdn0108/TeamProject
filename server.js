@@ -22,7 +22,6 @@ let sessionObj = {
         maxAge: 300*60*1000
     }
 }
-
 app.use(session(sessionObj))
 app.use(router)
 

@@ -11,37 +11,47 @@
     <div class="admin_profile">
         <h1>회원정보 수정</h1>
         <form method="post" action="/admin/update">
-            <input type="hidden" name="useridx" value="{{useridx}}">
+            <input type="hidden" name="useridx" value="{{user.useridx}}">
             <ul>
                 <li>
                     <span>회원등급 : </span>
-                    <input type="radio" name="userlevel" id="level1" value="{{userlevel}}">
+                    <select name="userlevel">
+                        <option value={{user.userlevel}}>등급선택</option>
+                        <option value="1">최고관리자</option>
+                        <option value="2">관리자</option>
+                        <option value="3">일반</option>
+                    </select>
+
+
+                    <!-- <input type="radio" name="userlevel" id="level1" value="{{userlevel}}">
                     <label for="level1">level1 (일반)</label>
                     <input type="radio" name="userlevel" id="level2" value="{{userlevel}}">
                     <label for="level2">level2 (관리자)</label>
                     <input type="radio" name="userlevel" id="level3" value="{{userlevel}}">
-                    <label for="level3">level3 (최고관리자)</label>
+                    <label for="level3">level3 (최고관리자)</label> -->
                 </li>
                 <li>
-                    <span>아이디 : </span> <input value={{user.id}}/>
+                    <span>아이디 : </span> {{user.id}} 
+                    <input name="id" value={{user.id}}  style="display: none;" />
                 </li>
                 <li>
-                    <span>이름 : </span> <input value={{user.name}} />
+                    <span>이름 : </span> <input name="name" value={{user.name}} />
                 </li>
                 <li>
-                    <span>성별 : </span> <input value={{user.gender}} />
+                    <span>성별 : </span> {{user.gender}}
                 </li>
                 <li>
-                    <span>생년월일 : </span> <input type="datetime-local" value={{user.birth}}  /> 
+                    <span>생년월일 : </span> {{user.birth}}
                 </li>
                 <li>
-                    <span>핸드폰번호 : </span><input value={{user.mobile}}  />
+                    <span>핸드폰번호 : </span><input name="mobile" value={{user.mobile}} />
                 </li>
             </ul>
             <input type="submit" value="회원정보 수정완료" id="updatebtn">
         </form>
         <form method="post" action="/admin/delete">
-            <input type="submit" value="이용중지" id="dropbtn">
+            <input value="{{user.useridx}}" name="useridx"style="display: none;" >
+            <input type="submit" value="이용정지" id="dropbtn">
         </form>
     </div>
 </body>

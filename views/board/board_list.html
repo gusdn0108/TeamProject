@@ -15,6 +15,7 @@
                 <th>작성일</th>
                 <th>조회수</th>
             </tr>
+            {% if user %}
             {% for item in result %}
             <tr> 
                 <td>{{item.idx}}</td>
@@ -24,14 +25,30 @@
                 <td>{{item.hit}}</td>
             </tr>
             {% endfor %}
+                {% else %}
+                <tr>
+                    <td colspan="5" style="padding:50px; text-align: center;">회원외 접근금지 <a href="/user/login">login</a></td>
+                </tr>
+            {% endif %} 
+
+           
         </table>
+
+        {% if user %}
         <button><a href="/board/write">글작성</a></button>
+        {% endif %} 
+
+        {% if user %}
         <div class="pager">
             <span>1</span>
             <span>2</span>
             <span>3</span>
             <span>4</span>
         </div>
+        {% endif %} 
+
+    
+        
     </div>
 </body>
 </html>
