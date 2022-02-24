@@ -83,6 +83,7 @@ exports.deletePost =
 
 
 
+
 exports.update =
     (req,res) =>{
         const {idx} = req.query

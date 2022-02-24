@@ -13,6 +13,7 @@ router.post('/update', adminController.updateAction)
 
 router.post('/delete', adminController.userDelete)
 
+router.post('/post-delete', adminController.postDelete)
 
-router.get('/board-list' ,adminController.boardList)
+
 module.exports = router

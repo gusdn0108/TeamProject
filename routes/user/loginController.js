@@ -22,8 +22,9 @@ exports.loginAction = (req,res) => {
                 if(result.length != 0){
                     req.session.user = result[0]
                     const {user} = req.session
-                    console.log(req.session)
-                    console.log(user.id)
+                    // console.log(req.session)
+                    // console.log(user.id)
+                    console.log(`${user.id} 님 접속하였습니다.`)
                     res.render('main.html',{
                         user,
                     })

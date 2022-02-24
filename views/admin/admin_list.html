@@ -16,6 +16,9 @@
         <a href="/admin">Admin page</a>
         <a href="/">Go to main page</a>
     </div>
+    <div>
+       최고관리자 {{ user.id }} 님 어서오세요.
+    </div>
 
 
     <div class="admin">
@@ -73,8 +76,9 @@
 
                 {% if user.userlevel==1 %}
                 <td>
-                    <form method="post" action="/admin/board-delete">
-                        <input name="contentId" value={{item.idx}} style="display: none;"/>
+                    <form method="post" action="/admin/post-delete">
+                        <input name="userlevel" value={{user.userlevel}} style="display: none;"/>
+                        <input name="idx" value={{item.idx}} style="display: none;"/>
                         <input type="submit" value="삭제" />
 
                     </form>
