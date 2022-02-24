@@ -9,7 +9,7 @@
 }
 
 body{
-    font-family: 'Fjalla One', sans-serif;
+    font-family:'Fjalla One', sans-serif;
     margin:0;
     width:100%;
     cursor:url("../img/free-icon-cursor-99183.png"),auto;
@@ -29,7 +29,7 @@ a{
 
 .navbar > .navbar_logo{
     padding:40px;
-    font-size: 55px;
+    font-size: 40px;
     font-weight:700;
     position:absolute;
     z-index:30;
@@ -44,7 +44,7 @@ a{
 .navbar{
     display: flex;
     justify-content:flex-end;
-    height:150px;
+    height:130px;
     font-weight: bold;
     padding-right:30px;
 }
@@ -70,7 +70,7 @@ a{
 }
 
 .navbar_menu .snb > li{
-    padding:0.5em;
+    padding:0.3em;
 }
 
 .snb.on{
@@ -236,4 +236,70 @@ button > a{
 
 button:hover a{
     color:var(--accent3-color);
+}
+
+/* 웰컴페이지 */
+#moneyshower{
+    z-index: 1;
+    width:100%;
+    overflow-x: hidden;
+}
+
+#welcome{
+   position: absolute;
+   top:0;
+   margin: 20px 40px;
+}
+
+#welcome > h1{
+    font-size: 80px;
+    margin:0px;
+    text-align: center;
+}
+
+#welcome > h2, h3{
+    font-family: 'Noto Serif KR', serif;
+    padding-left: 20px;
+}
+
+.welcomeProfile li{
+    padding-top:10px;
+    font-size: 20px;
+    font-family: 'Noto Serif KR', serif;
+}
+
+.welcomeProfile li span{
+    display: inline-block;
+    width:105px;
+    text-align: end;
+    font-weight: 700;
+    padding-right:15px;
+}
+
+#goback{
+    font-family: 'Noto Serif KR', serif;
+    font-size: 30px;
+    font-weight: 700;
+    position:absolute;
+    top:-5%;
+    text-align: center;
+    left:45%;
+    background-color: var(--text1-color);
+    padding:10px 20px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px var(--text1-color)
+}
+
+#goback > a{
+    color:var(--text2-color);
+    padding:0px;
+}
+
+#goback > a:hover{
+    color:var(--accent3-color)
+}
+
+#goback.down{
+    transform:translateY(50%);
+    transition:all 0.7s;
 }

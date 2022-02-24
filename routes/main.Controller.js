@@ -4,5 +4,12 @@ const router = express.Router()
 
 exports.main =
     (req,res)=>{
-        res.render(`main`)
+        let {user} = req.session
+        if(user != undefined){
+        res.render(`main`,{
+            user,
+        })
+    }else{
+        res.render('main')
+    }
     }
