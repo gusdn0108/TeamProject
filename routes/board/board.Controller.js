@@ -61,7 +61,7 @@ exports.view =
                     })
                 }else throw error ;
             })
-        conn.release();
+            conn.release();
         })
     }
 
@@ -103,14 +103,11 @@ exports.updatePost =
 //작업하기2 - date 가공하기
     (req,res) =>{
         const {subject,content, idx} = req.body
-        console.log(subject,content,idx)
         let param = [`${subject}`,`${content}`,idx]
-        console.log(param)
         pool.getConnection((err,conn)=>{
             conn.query(SQL.boardUpdate,param,(error,result)=>{
                 if(!error) {
-                    console.log(`excute Insert into query`)
-                    res.send(alertmove('/board/view','글수정을 완료하였습니다.'));
+                    res.send(alertmove(`/board/view?idx=${idx}`,'글수정을 완료하였습니다.'));
                 }else { 
                     throw error ;
                     res.send(alertmove('/board/list','글수정에 실패하였습니다.'))}

@@ -11,7 +11,7 @@ CREATE TABLE userAccount(
     birth DATE,
     gender CHAR(1),
     phone VARCHAR(11),
-    mobile VARCHAR(11) NOT NULL,
+    mobile VARCHAR(11) NOT NULL
     PRIMARY KEY(useridx)
 );
 
