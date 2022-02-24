@@ -12,23 +12,23 @@
         <h1>VIEW</h1>
         <div class="viewbox">
             <h2>
-              {{subject}}
+              {{item.subject}}
             </h2>
             <ul>
-                <li>{{nickname}}</li>
-                <li>{{date}}</li>
-                <li>{{hit}}</li>
+                <li>{{item.nickname}}</li>
+                <li>{{item.date}}</li>
+                <li>{{item.hit}}</li>
             </ul>
             <div id="text">
-                {{content}}
+                {{item.content}}
             </div>
         </div>
         <form method="post" action="/board/delete">
-            <input type="hidden" name="idx" value="{{idx}}">
+            <input type="hidden" name="idx" value="{{item.idx}}">
             <input type="submit" value="글삭제" class="btn delete">
         </form>
         <form method="get" action="/board/update">
-            <input type="hidden" name="idx" value="{{idx}}">
+            <input type="hidden" name="idx" value="{{item.idx}}">
             <input type="submit" value="글수정" class="btn update">
         </form>
     </div>
