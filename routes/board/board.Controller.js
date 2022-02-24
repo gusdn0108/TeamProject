@@ -6,13 +6,14 @@ const {alertmove} = require(`../util/alertmove.js`)
 
 exports.list =
     (req,res) =>{
+        let {user} = req.session
         pool.getConnection((err,conn)=>{
             conn.query(SQL.boardList,(error,result)=>{
                 if(!error) {
                     // result.forEach(v=>{date = v.date
                     // })
                     res.render(`board/board_list`,{
-                        result
+                        result ,user
                     })
                 }else throw error ;
                 })
@@ -77,6 +78,7 @@ exports.deletePost =
             conn.release();
             })
         }
+
 
 
 

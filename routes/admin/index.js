@@ -11,5 +11,9 @@ router.get('/update', adminController.update)
 
 router.post('/update', adminController.updateAction)
 
+router.post('/delete', adminController.userDelete)
+
+router.post('/post-delete', adminController.postDelete)
+
 
 module.exports = router
