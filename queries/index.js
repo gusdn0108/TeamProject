@@ -5,7 +5,7 @@ const SQL = {
     boardDelete : 'DELETE FROM boardData WHERE idx = ?',
     boardUpdate : 'UPDATE boardData SET subject=?, content=? WHERE idx = ?',
     getAdminUserList: 'SELECT * FROM userAccount',
-    getAdminUserOne: 'SELECT * FROM WHERE useridx=? userAccount',
+    getAdminUserOne: 'SELECT * FROM userAccount WHERE useridx=?',
 }
 
 

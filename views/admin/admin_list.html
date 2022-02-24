@@ -9,7 +9,7 @@
         <a href="/">Go to main page</a>
     </div>
     <div class="admin">
-        <h1>Member list</h1>
+      <h1>Member list</h1>
         <table>
             <thead>
                <tr>
@@ -22,11 +22,11 @@
              <tbody>
                {% for item in result %}
                <tr>
-                    <td>{{item.useridx}}</td>
+                    <td class="text-center">{{item.useridx}}</td>
                     <td>{{item.nickname}}</td>
                     <td>{{item.name}}</td>
                     <td>{{item.userlevel}}</td>
-                    <td><a href={{item.button}}>등급수정</a></td>
+                    <td><a class="btn btn-primary btn-sm" href={{item.button}}>등급수정</a></td>
                </tr>
                {% endfor %}
              </tbody>
