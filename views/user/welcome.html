@@ -1,21 +1,32 @@
 {% include "../_header.html" %}
-    <link href="/profile.css" rel="stylesheet" type="text/css">
+    <link href="/user_style.css" rel="stylesheet" type="text/css">
     <title>WELCOME</title>
 </head>
 <body>
-    <div id="welcome">
-    {{user.id}}님 환영합니다.
-    <img src="../../img/GettyImages-76133201-1-2048x1152.jpg">
+    <div id="moneyshower">
+        <img src="../../img/GettyImages-76133201-1-2048x1152.jpg">
     </div>
-    welcome! 
-    {{id}}
-    <br>
-    {{name}}
-    <br>
-    {{gender}}
-    <br>
-    {{phone}}
-    <br>
-    {{mobile}}
+    <div id="welcome">
+        <h1> Welcome aboard </h1>
+        <h2> Ready for 돈벼락 ? </h2>
+        <h3> {{name}}님 함께 하게 되어 영광입니다.<br>
+            아래 정보로 가입되었습니다!</h3>
+        <ul class="welcomeProfile">
+           <li><span>ID : </span>{{id}}</li>
+           <li><span>NAME : </span>{{name}}</li>
+           <li><span>GENDER : </span>{{gender}}</li>
+           <li><span>PHONE : </span>{{phone}}</li>
+           <li><span>MOBILE : </span>{{mobile}}</li>
+        </ul>
+    </div>
+    <span id="goback">
+        <a href="/">Main page 로 갈까요?</a>
+    </span>
 </body>
+    <script>
+        const goback = document.querySelector('#goback')
+        window.onload = function(){
+        goback.classList.add('down')
+        }
+    </script>
 </html>

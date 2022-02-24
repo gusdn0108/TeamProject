@@ -13,17 +13,17 @@
         <form method="post" action="/board/update">
             <div class="viewbox">
                 <h2 class="board_write">
-                제목 : <input type="text" name="subject" value="{{subject}}">
+                제목 : <input type="text" name="subject" value="{{item.subject}}">
                 </h2>
                 <ul>
-                    <li>{{nickname}}</li>
-                    <li>{{date}}</li>
+                    <li>{{item.nickname}}</li>
+                    <li>{{item.date}}</li>
                 </ul>
                 <div id="textwrap">
                     <textarea name="content" rows="30">{{textarea}}</textarea>
                 </div>
             </div>
-            <input type="hidden" name="idx" value="{{idx}}">
+            <input type="hidden" name="idx" id = "updateidx" value="{{item.idx}}">
             <input type="submit" value="수정완료" class="btn write">
         </form>
     </div>

@@ -5,43 +5,43 @@
 <body>
     <div class="navbar_logo">
         <i class="fa-solid fa-screwdriver-wrench"></i>
-        <a href="/">Admin</a>
+        <a href="/admin">Admin page</a>
     </div>
    
     <div class="admin_profile">
-        <h1>회원정보수정</h1>
+        <h1>회원정보 수정</h1>
         <form method="post" action="/admin/update">
             <input type="hidden" name="useridx" value="{{useridx}}">
             <ul>
                 <li>
-                    회원등급 : 
+                    <span>회원등급 : </span>
                     <input type="radio" name="userlevel" id="level1" value="{{userlevel}}">
-                    <label for="level1">level1</label>
+                    <label for="level1">level1 (일반)</label>
                     <input type="radio" name="userlevel" id="level2" value="{{userlevel}}">
-                    <label for="level2">level2</label>
+                    <label for="level2">level2 (관리자)</label>
                     <input type="radio" name="userlevel" id="level3" value="{{userlevel}}">
-                    <label for="level3">level3</label>
+                    <label for="level3">level3 (최고관리자)</label>
                 </li>
                 <li>
-                   아이디 : <input value={{user.id}} />
+                    <span>아이디 : </span> <input value={{user.id}}/>
                 </li>
                 <li>
-                    이름 : <input value={{user.name}} />
+                    <span>이름 : </span> <input value={{user.name}} />
                 </li>
                 <li>
-                    성별 : <input value={{user.gender}} />
+                    <span>성별 : </span> <input value={{user.gender}} />
                 </li>
                 <li>
-                    생년월일 : <input type="datetime-local" value={{user.birth}}  /> 
+                    <span>생년월일 : </span> <input type="datetime-local" value={{user.birth}}  /> 
                 </li>
                 <li>
-                    핸드폰번호 :  <input value={{user.mobile}}  />
+                    <span>핸드폰번호 : </span><input value={{user.mobile}}  />
                 </li>
             </ul>
-            <input type="submit" value="회원정보 수정완료">
+            <input type="submit" value="회원정보 수정완료" id="updatebtn">
         </form>
         <form method="post" action="/admin/delete">
-            <input type="submit" value="이용중지">
+            <input type="submit" value="이용중지" id="dropbtn">
         </form>
     </div>
 </body>

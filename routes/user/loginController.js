@@ -4,6 +4,7 @@ const { connect } = require(".")
 const pool = require("../../db")
 const { alertmove } = require("../util/alertmove")
 const bodyParser = require('body-parser')
+const { render } = require("express/lib/response")
 
 // 로그인 get 
 exports.login = (req,res) => {
@@ -116,7 +117,7 @@ exports.welcome = (req, res) => {
     let welcomeGender = req.query.gender
     let welcomePhone = req.query.phone
     let welcomeMobile = req.query.mobile
-
+    
     res.render('user/welcome.html', {
         id:welcomeId,
         name:welcomeName,
