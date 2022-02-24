@@ -6,6 +6,13 @@ const SQL = {
     // boardUpdate : 'UPDATE boardData SET 컬럼1=값1, 컬럼2=값2 WHERE idx = ${idx}'
     getAdminUserList: 'SELECT * FROM userAccount',
     getAdminUserOne: 'SELECT * FROM WHERE useridx=? userAccount',
+
+    // user
+
+    loginSql : `select * from userAccount where id = ? and pw = ?;`,
+    profileCheck : `select * from userAccount where id = ?`,
+    checkId : `select * from userAccount where id=? or phone=? or mobile=?`,
+    addData : `insert into userAccount(id, pw, name, nickname, birth, gender, phone, mobile, userlevel) values(?,?, ?, ?,?, ?, ?, ?,3)`,
 }
 
 
