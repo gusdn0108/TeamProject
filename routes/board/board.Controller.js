@@ -4,11 +4,6 @@ const pool = require(`../../db.js`)
 const {alertmove} = require(`../util/alertmove.js`)
 
 
-let idx,subject, nickname,date,hit
-let list
-
-
-
 exports.list =
     (req,res) =>{
         pool.getConnection((err,conn)=>{
@@ -35,7 +30,8 @@ exports.write =
 exports.writePost =
     (req,res) =>{
         const {subject,content} = req.body
-        let param = [`${subject}`,`jane`,`${content}`]
+        const {nickname} = req.session.user
+        let param = [`${subject}`,`${nickname}`,`${content}`]
         pool.getConnection((err,conn)=>{
             conn.query(SQL.boardWrite,param,(error,result)=>{
                 if(!error) {
@@ -52,16 +48,18 @@ exports.writePost =
 
 exports.view =
     (req,res) =>{
-        const {idx} = req.query
+        const {idx,hit} = req.query
         pool.getConnection((err,conn)=>{
             conn.query(SQL.boardView,idx,(error,result)=>{
                 if(!error) {
-                    res.render(`board/board_view`,{
-                        item: result[0]
-                    })
+                    // conn.query(SQL.boardHit,hit,(error,result)=>{
+                        res.render(`board/board_view`,{
+                            item: result[0]
+                        })
+                    // })
                 }else throw error ;
             })
-        conn.release();
+            conn.release();
         })
     }
 
@@ -103,14 +101,11 @@ exports.updatePost =
 //작업하기2 - date 가공하기
     (req,res) =>{
         const {subject,content, idx} = req.body
-        console.log(subject,content,idx)
         let param = [`${subject}`,`${content}`,idx]
-        console.log(param)
         pool.getConnection((err,conn)=>{
             conn.query(SQL.boardUpdate,param,(error,result)=>{
                 if(!error) {
-                    console.log(`excute Insert into query`)
-                    res.send(alertmove('/board/view','글수정을 완료하였습니다.'));
+                    res.send(alertmove(`/board/view?idx=${idx}`,'글수정을 완료하였습니다.'));
                 }else { 
                     throw error ;
                     res.send(alertmove('/board/list','글수정에 실패하였습니다.'))}

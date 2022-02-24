@@ -12,16 +12,17 @@ CREATE TABLE userAccount(
     gender CHAR(1),
     phone VARCHAR(11),
     mobile VARCHAR(11) NOT NULL,
-    PRIMARY KEY(useridx)
+    PRIMARY KEY(useridx),
+    UNIQUE KEY(nickname)
 );
 
 CREATE TABLE boardData(
     idx INT NOT NULL AUTO_INCREMENT,
     subject VARCHAR(20) NOT NULL,
     nickname VARCHAR(10) NOT NULL,
-    date TIMESTAMP NOT NULL,
+    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     content TEXT,
-    hit INT NOT NULL,
+    hit INT DEFAULT 0 NOT NULL,
     PRIMARY KEY(idx)
 );
 

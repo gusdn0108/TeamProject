@@ -1,6 +1,5 @@
 const pool = require("../../db")
 const { alertmove } = require("../util/alertmove")
-
 const queries = require('../.././queries/index.js')
 
 
@@ -20,10 +19,8 @@ exports.loginAction = (req,res) => {
         conn.query(queries.loginSql, param, (err,result)=>{
             if(!err) {
                 if(result.length != 0){
-                    req.session.user = {...loginData}
+                    req.session.user = {...result[0]}
                     const {user} = req.session
-                    console.log(req.session)
-                    console.log(user.id)
                     res.render('main.html',{
                         user,
                     })
