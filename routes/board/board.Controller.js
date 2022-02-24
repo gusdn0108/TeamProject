@@ -24,7 +24,10 @@ exports.list =
 
 exports.write =
     (req,res) =>{
-        res.render(`board/board_write`)
+        const { id }= req.session.user
+        res.render(`board/board_write`,{
+            id,
+        })
     }
 
 

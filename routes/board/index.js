@@ -3,7 +3,7 @@ const router = express.Router()
 const boardController = require(`./board.Controller`)
 const Auth = require(`../util/auth.js`)
 
-router.get(`/list`,boardController.list)
+router.get(`/list`, boardController.list)
 
 router.get(`/write`,boardController.write)
 router.post(`/write`,boardController.writePost)
