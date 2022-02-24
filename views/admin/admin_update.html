@@ -11,7 +11,7 @@
     <div class="admin_profile">
         <h1>회원정보 수정</h1>
         <form method="post" action="/admin/update">
-            <input type="hidden" name="useridx" value="{{useridx}}">
+            <input type="hidden" name="useridx" value="{{user.useridx}}">
             <ul>
                 <li>
                     <span>회원등급 : </span>
@@ -50,7 +50,8 @@
             <input type="submit" value="회원정보 수정완료" id="updatebtn">
         </form>
         <form method="post" action="/admin/delete">
-            <input type="submit" value="이용중지" id="dropbtn">
+            <input value="{{user.useridx}}" name="useridx"style="display: none;" >
+            <input type="submit" value="이용정지" id="dropbtn">
         </form>
     </div>
 </body>

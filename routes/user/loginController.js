@@ -20,7 +20,7 @@ exports.loginAction = (req,res) => {
         conn.query(loginSql, (err,result)=>{
             if(!err) {
                 if(result.length != 0){
-                    req.session.user = {...loginData}
+                    req.session.user = result[0]
                     const {user} = req.session
                     console.log(req.session)
                     console.log(user.id)

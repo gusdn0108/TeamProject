@@ -2,12 +2,22 @@
     <link href="/admin.css" rel="stylesheet" type="text/css">
     <title>billionaire/admin</title>
 </head>
+
+
+
+
 <body>
+    
+{% if user.userlevel===1 %}
+
+<div>
     <div class="navbar_logo">
         <i class="fa-solid fa-screwdriver-wrench"></i>
         <a href="/admin">Admin page</a>
         <a href="/">Go to main page</a>
     </div>
+
+
     <div class="admin">
       <h1>Member list</h1>
         <table class="table table-sm table-hover">
@@ -32,6 +42,60 @@
              </tbody>
          </table>
     </div>
+
+    <div class="board">
+        <h1>Board</h1>
+        <table>
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>작성일</th>
+                <th >조회수</th>
+                {% if user.userlevel==1 %}
+                <th colspan="2">Editor</th>
+                {% endif %}
+
+              
+            </tr>
+       
+            {% for item in boardData %}
+            <tr> 
+                <td>{{item.idx}}</td>
+                <td><a href="/board/view?idx={{item.idx}}">{{item.subject}}</a></td>
+                <td>{{item.nickname}}</td>
+                <td>{{item.date}}</td>
+                <td>{{item.hit}}</td>
+
+                {% if user.userlevel==1 %}
+                <td><a>수정</a></td>
+                {% endif %}
+
+                {% if user.userlevel==1 %}
+                <td>
+                    <form method="post" action="/admin/board-delete">
+                        <input name="contentId" value={{item.idx}} style="display: none;"/>
+                        <input type="submit" value="삭제" />
+
+                    </form>
+                </td>
+                {% endif %}
+             
+            </tr>
+            {% endfor %}
+          
+
+        </table>
+
+    </div>
+
+
+</div>
+{% else %}
+<div>메인페이지이동</div>
+{% endif %}
+
+
 </body>
 <script src="../../front-js/admin.js"></script>
 </html>
