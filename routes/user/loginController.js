@@ -1,10 +1,8 @@
-const res = require("express/lib/response")
-const router = require(".")
-const { connect } = require(".")
 const pool = require("../../db")
 const { alertmove } = require("../util/alertmove")
-const bodyParser = require('body-parser')
-const { render } = require("express/lib/response")
+
+
+
 
 // 로그인 get 
 exports.login = (req,res) => {
