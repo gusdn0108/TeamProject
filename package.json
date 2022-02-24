@@ -16,6 +16,7 @@
     "express-session": "^1.17.2",
     "memorystore": "^1.6.7",
     "mysql": "^2.18.1",
+    "mysql2": "^2.3.3",
     "net-tools": "^1.0.1",
     "nunjucks": "^3.2.3"
   },
@@ -26,6 +27,5 @@
   "bugs": {
     "url": "https://github.com/yjleeinkr/TeamProject/issues"
   },
-  "homepage": "https://github.com/yjleeinkr/TeamProject#readme",
-  "devDependencies": {}
+  "homepage": "https://github.com/yjleeinkr/TeamProject#readme"
 }
