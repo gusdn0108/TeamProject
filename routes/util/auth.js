@@ -10,21 +10,17 @@ exports.checkUser = (req, res, next) => {
         next()
     }
     else {
-        res.send(alertmove('/user/login', '로그인 해주세요!'))
+        res.send(alertmove('/user/login', '로그인 후 이용 가능한 서비스입니다.'))
     }
 }
 
 exports.checkLevel = (req, res, next) => {
-    console.log(`check`)
-    console.log(req.session)
     let idx = [req.query.idx || req.body.idx]
     let {nickname} = req.session.user
     let {userlevel} = req.session.user
     pool.getConnection((err,conn)=>{
         conn.query(SQL.boardView,idx,(error,result)=>{
-            console.log(`여긴 쿼리 체크`)
             if(!error){
-                console.log(userlevel !== 3 || nickname == result[0].nickname)
                 if(userlevel !== 3 || nickname == result[0].nickname ){
                     next()
                 } else {

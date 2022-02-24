@@ -1,5 +1,4 @@
 const SQL = require(`../../queries/`)
-const mysql = require(`mysql`)
 const pool = require(`../../db.js`)
 const {alertmove} = require(`../util/alertmove.js`)
 
@@ -10,8 +9,6 @@ exports.list =
         pool.getConnection((err,conn)=>{
             conn.query(SQL.boardList,(error,result)=>{
                 if(!error) {
-                    // result.forEach(v=>{date = v.date
-                    // })
                     res.render(`board/board_list`,{
                         result ,user
                     })
@@ -33,31 +30,33 @@ exports.writePost =
         const {subject,content} = req.body
         const {nickname} = req.session.user
         let param = [`${subject}`,`${nickname}`,`${content}`]
+        
         pool.getConnection((err,conn)=>{
             conn.query(SQL.boardWrite,param,(error,result)=>{
                 if(!error) {
                     res.send(alertmove('/board/list','글작성을 완료하였습니다.'));
                 }else { 
                     throw error ;
-                    res.send(alertmove('/board/list','글작성을 실패하였습니다.'))}
+                    res.send(alertmove('/board/list','글작성에 실패하였습니다.'))}
                 })
             conn.release() ;
             })
-    }
+        }
 
 
 
 exports.view =
     (req,res) =>{
         const {idx,hit} = req.query
+        const param = [hit,idx]
         pool.getConnection((err,conn)=>{
             conn.query(SQL.boardView,idx,(error,result)=>{
                 if(!error) {
-                    // conn.query(SQL.boardHit,hit,(error,result)=>{
-                        res.render(`board/board_view`,{
-                            item: result[0]
-                        })
-                    // })
+                    conn.query(SQL.boardHit,param,(error,result)=>{})
+                    res.render(`board/board_view`,{
+                        item: result[0],
+                        hit
+                    })
                 }else throw error ;
             })
             conn.release();
@@ -99,8 +98,6 @@ exports.update =
 
 
 exports.updatePost =
-//작업하기1 - 업데이트포스트부분
-//작업하기2 - date 가공하기
     (req,res) =>{
         const {subject,content, idx} = req.body
         let param = [`${subject}`,`${content}`,idx]
