@@ -1,5 +1,7 @@
 const pool = require("../../db")
 const { alertmove } = require("../util/alertmove")
+const queries = require('../.././queries/index.js')
+
 
 // 로그인 get 
 exports.login = (req,res) => {
@@ -10,9 +12,11 @@ exports.login = (req,res) => {
 exports.loginAction = (req,res) => {
     const {id,pw} = req.body
     const loginData = {id,pw}
-    let loginSql = `select * from userAccount where id = '${id}' and pw = '${pw}';`
+
+    let param = [`${id}`,`${pw}`]
+    
     pool.getConnection((err,conn)=>{
-        conn.query(loginSql, (err,result)=>{
+        conn.query(queries.loginSql, param, (err,result)=>{
             if(!err) {
                 if(result.length != 0){
                     req.session.user = {...result[0]}
@@ -25,9 +29,7 @@ exports.loginAction = (req,res) => {
                     res.send(alertmove('/user/login','비번확인바람'))
                 }
             }
-            else {
-                console.log('aa')
-            }
+            else {throw err}
         })
         conn.release();
     })
@@ -51,19 +53,18 @@ exports.joinAction = (req, res) => {
     let joinPhone = req.body.phone
     let joinMobile = req.body.mobile
     
-
     console.log(joinId,joinPw,joinName,birthday)
 
-    let checkId = `select * from userAccount where id='${joinId}' or phone='${joinPhone}' or mobile='${joinMobile}'`
-    let addData = `insert into userAccount(id, pw, name, nickname, birth, gender, phone, mobile, userlevel) values('${joinId}','${joinPw}', '${joinName}', '${joinNickname}','${birthday}', '${joinGender}', '${joinPhone}', '${joinMobile}',3)`
+    let param1 = [`${joinId}`,`${joinNickname}`, `${joinPhone}`, `${joinMobile}`]
+    let param2 = [`${joinId}`,`${joinPw}`, `${joinName}`,`${joinNickname}`,`${birthday}`, `${joinGender}`,`${joinPhone}`,`${joinMobile}`]
 
     pool.getConnection( (error,conn)=> {
         if ( error ) throw error
-        conn.query(checkId,(err,result)=>{
+        conn.query(queries.checkId,param1, (err,result)=>{
             
             if(result.length == 0) {
                 console.log('회원가입 성공')
-                conn.query(addData,(err,result)=>{
+                conn.query(queries.addData, param2, (err,result)=>{
                     if(err) throw err
                     console.log(`insert 문 진입`)
                     res.send(alertmove(`/user/welcome?id=${joinId}&name=${joinName}&gender=${joinGender}&phone=${joinPhone}&mobile=${joinMobile}`, '회원가입이 완료되었습니다.'))
@@ -71,25 +72,22 @@ exports.joinAction = (req, res) => {
             }
             else {
                 console.log('회원가입 실패')
-                res.send(alertmove('/user/login','중복된 아이디/닉네임/전화번호 입니다.'))
+                res.send(alertmove('/user/join','입력한 정보를 확인해주세요.'))
             }
         })
         conn.release()
     })
 }
 
-// 웰컴 페이지: 아이디, 이름, 성별, 잔반, 폰번
-
 //
 
 exports.profile = 
 (req,res) => {
     let proId = req.session.user.id 
-    let profileCheck = `select * from userAccount where id ='${proId}'`
-    
+    let param = [`${proId}`]
     pool.getConnection( (err, conn) => {
         if(!err) {
-            conn.query(profileCheck, (err, result) => {
+            conn.query(queries.profileCheck, param, (err, result) => {
                 let temp = { id: result[0].id, name: result[0].name, gender:result[0].gender, 
                 phone:result[0].phone, mobile:result[0].mobile, nickname:result[0].nickname }                
                 
