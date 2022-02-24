@@ -13,10 +13,10 @@ router.get(`/view`,boardController.view)
 
 
 
-router.get(`/delete`,boardController.deletePost)
+router.post(`/delete`,boardController.updatePost)
 
 router.get(`/update`,boardController.update)
-router.post(`/update`,boardController.deletePost)
+router.post(`/update`,boardController.updatePost)
 
 
 module.exports = router

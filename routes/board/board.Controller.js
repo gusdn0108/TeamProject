@@ -3,18 +3,19 @@ const mysql = require(`mysql`)
 const pool = require(`../../db.js`)
 const {alertmove} = require(`../util/alertmove.js`)
 
-let idx,subject, nickname,date,hit
 
+let idx,subject, nickname,date,hit
 let list
+
+
 
 exports.list =
     (req,res) =>{
         pool.getConnection((err,conn)=>{
             conn.query(SQL.boardList,(error,result)=>{
                 if(!error) {
-                    result.forEach(v=>{date = v.date
-                    console.log(date)
-                    })
+                    // result.forEach(v=>{date = v.date
+                    // })
                     res.render(`board/board_list`,{
                         result
                     })
@@ -38,8 +39,7 @@ exports.writePost =
         pool.getConnection((err,conn)=>{
             conn.query(SQL.boardWrite,param,(error,result)=>{
                 if(!error) {
-                    console.log(`excute Insert into query`)
-                    res.send(alertmove('/board/view','글작성을 완료하였습니다.'));
+                    res.send(alertmove('/board/list','글작성을 완료하였습니다.'));
                 }else { 
                     throw error ;
                     res.send(alertmove('/board/list','글작성을 실패하였습니다.'))}
@@ -52,14 +52,44 @@ exports.writePost =
 
 exports.view =
     (req,res) =>{
+        const {idx} = req.query
         pool.getConnection((err,conn)=>{
-            conn.query(SQL.boardView,(error,result)=>{
+            conn.query(SQL.boardView,idx,(error,result)=>{
                 if(!error) {
-                    result.forEach(v=>{date = v.date
-                    console.log(date)
-                    })
                     res.render(`board/board_view`,{
-                        result
+                        item: result[0]
+                    })
+                }else throw error ;
+            })
+        conn.release();
+        })
+    }
+
+
+
+exports.deletePost =
+    (req,res) =>{
+        const {idx} = req.body
+        pool.getConnection((err,conn)=>{
+            conn.query(SQL.boardDelete,idx,(error,result)=>{
+                if(!error) {
+                    res.send(alertmove('/board/list','글삭제를 완료하였습니다.'));
+                }else throw error ;
+                })
+            conn.release();
+            })
+        }
+
+
+
+exports.update =
+    (req,res) =>{
+        const {idx} = req.query
+        pool.getConnection((err,conn)=>{
+            conn.query(SQL.boardView,idx,(error,result)=>{
+                if(!error) {
+                    res.render(`board/board_update`,{
+                        item:result[0]
                     })
                 }else throw error ;
                 })
@@ -67,26 +97,28 @@ exports.view =
             })
         }
 
-exports.deletePost =
-    (req,res) =>{
-    }
-
-
-
-exports.update =
-    (req,res) =>{
-        res.render(`board/board_update`)
-    }
-
 
 exports.updatePost =
+//작업하기1 - 업데이트포스트부분
+//작업하기2 - date 가공하기
     (req,res) =>{
-        res.render(`board/board_update`)
-    }
+        const {subject,content, idx} = req.body
+        console.log(subject,content,idx)
+        let param = [`${subject}`,`${content}`,idx]
+        console.log(param)
+        pool.getConnection((err,conn)=>{
+            conn.query(SQL.boardUpdate,param,(error,result)=>{
+                if(!error) {
+                    console.log(`excute Insert into query`)
+                    res.send(alertmove('/board/view','글수정을 완료하였습니다.'));
+                }else { 
+                    throw error ;
+                    res.send(alertmove('/board/list','글수정에 실패하였습니다.'))}
+                })
+            conn.release() ;
+            })
+        }
 
-
-
-//const {subject,nickname,date,content,idx} = req.body
 
 
 

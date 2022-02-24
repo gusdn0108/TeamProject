@@ -213,5 +213,18 @@ a{
     font-weight:bold;
     margin:10px;
 }
-  
+
+.connection{
+    background-color: var(--text1-color);
+    color:var(--text2-color);
+    box-shadow: 5px 5px 10px var(--text1-color);
+    border-radius: 10px;
+    padding:10px 20px;
+    position:absolute;
+    top:120px;
+    right:2%;
+    font-size: 15px;
+    font-family: 'Noto Serif KR', serif;
+    z-index:200;
+}
 

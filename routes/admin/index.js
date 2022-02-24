@@ -9,5 +9,7 @@ router.get('/', adminController.list)
 
 router.get('/update', adminController.update)
 
+router.post('/update', adminController.updateAction)
+
 
 module.exports = router

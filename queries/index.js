@@ -1,9 +1,9 @@
 const SQL = {
-    boardList : 'SELECT idx, subject, nickname, date, hit FROM boardData',
-    boardWrite : 'INSERT INTO boardData (idx, subject, nickname, date, content, hit) Values (3,?,?,?,now(),?,1)',
-    boardView : 'SELECT subject, nickname, date, content, idx FROM boardData',
-    // boardDelete : 'DELETE FROM boardData WHERE idx = ${idx} ;',
-    // boardUpdate : 'UPDATE boardData SET 컬럼1=값1, 컬럼2=값2 WHERE idx = ${idx}'
+    boardList : 'SELECT * FROM boardData',
+    boardWrite : 'INSERT INTO boardData (subject, nickname, date, content, hit) Values (?,?,now(),?,1)',
+    boardView : 'SELECT * FROM boardData WHERE idx = ?',
+    boardDelete : 'DELETE FROM boardData WHERE idx = ?',
+    boardUpdate : 'UPDATE boardData SET subject=?, content=? WHERE idx = ?',
     getAdminUserList: 'SELECT * FROM userAccount',
     getAdminUserOne: 'SELECT * FROM WHERE useridx=? userAccount',
 
@@ -14,6 +14,12 @@ const SQL = {
     checkId : `select * from userAccount where id=? or phone=? or mobile=?`,
     addData : `insert into userAccount(id, pw, name, nickname, birth, gender, phone, mobile, userlevel) values(?,?, ?, ?,?, ?, ?, ?,3)`,
 }
+
+
+//view에 있는 hit는 셀렉으로 가져오기도 하면서 겟 도달 시 +1해서 업뎃으로 디비 반영도 해야함
+
+
+
 
 
 module.exports = SQL

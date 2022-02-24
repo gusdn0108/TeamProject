@@ -41,19 +41,25 @@
     <div class="rightbg">
         <img src="../img/shoeib-abolhassani-ukDEbYnyDsU-unsplash.jpg">
     </div>
-        <div class="banner">
-            <span>WELCOME</span>
-            <span>$</span>
-            <span>LET'S</span>
-            <span>GO</span>
-            <span>TO</span>
-            <span>THE</span>
-            <span>MOON</span>
-            <span>WITH</span>
-            <span>US</span>
-            <span>$</span>
-            <span>billionaire</span>
-        </div>
+    <div class="banner">
+        <span>WELCOME</span>
+        <span>$</span>
+        <span>LET'S</span>
+        <span>GO</span>
+        <span>TO</span>
+        <span>THE</span>
+        <span>MOON</span>
+        <span>WITH</span>
+        <span>US</span>
+        <span>$</span>
+        <span>billionaire</span>
+    </div>
+    {% if user %}
+    <div class="connection">
+        {{user.id}}님 접속 중
+    </div>
+    {% else %}
+    {% endif %}
 </body>
 <!-- <script src="../front-js/main.js"></script> -->
 </html>
