@@ -1,6 +1,7 @@
 const express = require(`express`)
 const app = express()
 const router = express.Router()
+const Auth = require(`./util/auth.js`)
 
 const boardRouter = require(`./board`)
 const userRouter = require('./user/index.js')
@@ -10,9 +11,9 @@ const adminRouter = require('./admin')
 app.use(express.urlencoded({extended:true}))
 
 router.use('/user', userRouter)
-router.use(`/board`,boardRouter)
-router.use('/admin',adminRouter)
-router.get(`/`,mainController.main)
+router.use(`/board`, Auth.checkUser, boardRouter)
+router.use('/admin', adminRouter)
+router.get(`/`, mainController.main)
 
 
 

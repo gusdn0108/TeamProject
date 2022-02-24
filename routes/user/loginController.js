@@ -1,10 +1,5 @@
-const res = require("express/lib/response")
-const router = require(".")
-const { connect } = require(".")
 const pool = require("../../db")
 const { alertmove } = require("../util/alertmove")
-const bodyParser = require('body-parser')
-const { render } = require("express/lib/response")
 
 // 로그인 get 
 exports.login = (req,res) => {
@@ -20,10 +15,8 @@ exports.loginAction = (req,res) => {
         conn.query(loginSql, (err,result)=>{
             if(!err) {
                 if(result.length != 0){
-                    req.session.user = {...loginData}
+                    req.session.user = {...result[0]}
                     const {user} = req.session
-                    console.log(req.session)
-                    console.log(user.id)
                     res.render('main.html',{
                         user,
                     })

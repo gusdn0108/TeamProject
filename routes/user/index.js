@@ -36,7 +36,7 @@ router.post('/join', loginController.joinAction)
 
 //
 
-router.get('/profile', Auth, loginController.profile)
+router.get('/profile', Auth.checkUser, loginController.profile)
 
 //
 

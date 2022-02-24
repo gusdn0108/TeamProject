@@ -4,11 +4,6 @@ const pool = require(`../../db.js`)
 const {alertmove} = require(`../util/alertmove.js`)
 
 
-let idx,subject, nickname,date,hit
-let list
-
-
-
 exports.list =
     (req,res) =>{
         pool.getConnection((err,conn)=>{
@@ -35,7 +30,8 @@ exports.write =
 exports.writePost =
     (req,res) =>{
         const {subject,content} = req.body
-        let param = [`${subject}`,`jane`,`${content}`]
+        const {nickname} = req.session.user
+        let param = [`${subject}`,`${nickname}`,`${content}`]
         pool.getConnection((err,conn)=>{
             conn.query(SQL.boardWrite,param,(error,result)=>{
                 if(!error) {
@@ -52,13 +48,15 @@ exports.writePost =
 
 exports.view =
     (req,res) =>{
-        const {idx} = req.query
+        const {idx,hit} = req.query
         pool.getConnection((err,conn)=>{
             conn.query(SQL.boardView,idx,(error,result)=>{
                 if(!error) {
-                    res.render(`board/board_view`,{
-                        item: result[0]
-                    })
+                    // conn.query(SQL.boardHit,hit,(error,result)=>{
+                        res.render(`board/board_view`,{
+                            item: result[0]
+                        })
+                    // })
                 }else throw error ;
             })
             conn.release();

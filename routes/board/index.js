@@ -1,6 +1,7 @@
 const express = require(`express`)
 const router = express.Router()
 const boardController = require(`./board.Controller`)
+const Auth = require(`../util/auth.js`)
 
 router.get(`/list`,boardController.list)
 
@@ -9,9 +10,9 @@ router.post(`/write`,boardController.writePost)
 
 router.get(`/view`,boardController.view)
 
-router.post(`/delete`,boardController.deletePost)
+router.post(`/delete`,Auth.checkLevel,boardController.deletePost)
 
-router.get(`/update`,boardController.update)
+router.get(`/update`,Auth.checkLevel,boardController.update)
 router.post(`/update`,boardController.updatePost)
 
 
