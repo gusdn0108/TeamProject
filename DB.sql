@@ -30,3 +30,5 @@ ALTER TABLE userAccount MODIFY mobile CHAR(11) UNIQUE;
 ALTER TABLE userAccount MODIFY phone CHAR(11) UNIQUE;
 ALTER TABLE userAccount MODIFY id VARCHAR(10) UNIQUE;
 
+-- admin account level 1부여해주기
+ UPDATE userAccount SET userlevel='1' WHERE id='admin';

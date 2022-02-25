@@ -7,7 +7,7 @@ function appendYear(){
     let optionidx = 0;
 
     for(let i=year-100; i<=year; i++){
-        selectValue.add(new Option(i+"년",i),optionidx++)
+        selectValue.add(new Option(i,i),optionidx++)
     } 
 }
 
@@ -18,9 +18,9 @@ function appendMonth(){
     for(let i=1; i<=12; i++){
         if(i<10){
             i='0'+i
-            selectValue.add(new Option(i+"월",i),optionidx++)
+            selectValue.add(new Option(i,i),optionidx++)
         }else{
-            selectValue.add(new Option(i+"월",i),optionidx++)}
+            selectValue.add(new Option(i,i),optionidx++)}
     }
 }
 
@@ -31,9 +31,9 @@ function appendDay(){
     for(let i=1; i<=31; i++){
         if(i<10){
             i='0'+i
-            selectValue.add(new Option(i+"일",i),optionidx++)
+            selectValue.add(new Option(i,i),optionidx++)
         }else{
-            selectValue.add(new Option(i+"일",i),optionidx++)
+            selectValue.add(new Option(i,i),optionidx++)
         }
     }
 }
