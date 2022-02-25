@@ -11,8 +11,6 @@ exports.login = (req,res) => {
 // 로그인 post
 exports.loginAction = (req,res) => {
     const {id,pw} = req.body
-    const loginData = {id,pw}
-
     let param = [`${id}`,`${pw}`]
     
     pool.getConnection((err,conn)=>{
@@ -26,7 +24,7 @@ exports.loginAction = (req,res) => {
                     })
                 }
                 else{
-                    res.send(alertmove('/user/login','비번확인바람'))
+                    res.send(alertmove('/user/login','로그인 정보를 확인해주세요.'))
                 }
             }
             else {throw err}
@@ -44,34 +42,23 @@ exports.join = (req,res)=> {
 // 가입 post
 
 exports.joinAction = (req, res) => {
-    let joinId = req.body.id
-    let joinPw = req.body.pw
-    let joinName = req.body.name
-    let joinNickname = req.body.nickname
+    let {id,pw,name,nickname,gender,phone,mobile} = req.body
     let birthday = req.body.birth_year + req.body.birth_month + req.body.birth_day;
-    let joinGender = req.body.gender
-    let joinPhone = req.body.phone
-    let joinMobile = req.body.mobile
     
-    console.log(joinId,joinPw,joinName,birthday)
-
-    let param1 = [`${joinId}`,`${joinNickname}`, `${joinPhone}`, `${joinMobile}`]
-    let param2 = [`${joinId}`,`${joinPw}`, `${joinName}`,`${joinNickname}`,`${birthday}`, `${joinGender}`,`${joinPhone}`,`${joinMobile}`]
+    let param1 = [`${id}`,`${nickname}`, `${phone}`, `${mobile}`]
+    let param2 = [`${id}`,`${pw}`, `${name}`,`${nickname}`,`${birthday}`, `${gender}`,`${phone}`,`${mobile}`]
 
     pool.getConnection( (error,conn)=> {
         if ( error ) throw error
         conn.query(queries.checkId,param1, (err,result)=>{
             
             if(result.length == 0) {
-                console.log('회원가입 성공')
                 conn.query(queries.addData, param2, (err,result)=>{
                     if(err) throw err
-                    console.log(`insert 문 진입`)
-                    res.send(alertmove(`/user/welcome?id=${joinId}&name=${joinName}&gender=${joinGender}&phone=${joinPhone}&mobile=${joinMobile}`, '회원가입이 완료되었습니다.'))
+                    res.send(alertmove(`/user/welcome?id=${id}&name=${name}&gender=${gender}&phone=${phone}&mobile=${mobile}`, '회원가입이 완료되었습니다.'))
                 })
             }
             else {
-                console.log('회원가입 실패')
                 res.send(alertmove('/user/join','입력한 정보를 확인해주세요.'))
             }
         })
@@ -83,16 +70,14 @@ exports.joinAction = (req, res) => {
 
 exports.profile = 
 (req,res) => {
-    let proId = req.session.user.id 
-    let param = [`${proId}`]
+    let param = [req.session.user.id]
     pool.getConnection( (err, conn) => {
         if(!err) {
             conn.query(queries.profileCheck, param, (err, result) => {
-                let temp = { id: result[0].id, name: result[0].name, gender:result[0].gender, 
-                phone:result[0].phone, mobile:result[0].mobile, nickname:result[0].nickname }                
-                
+                let {id,name,gender,phone,mobile,nickname} = result[0]
+                let user = {id,name,gender,phone,mobile,nickname}                
                 res.render('user/profile', {
-                    user:temp
+                    user,
                 })    
             })    
         }
@@ -103,18 +88,13 @@ exports.profile =
 //
 
 exports.welcome = (req, res) => {
-    let welcomeId = req.query.id
-    let welcomeName = req.query.name
-    let welcomeGender = req.query.gender
-    let welcomePhone = req.query.phone
-    let welcomeMobile = req.query.mobile
-    
+    let {id,name,gender,phone,mobile} = req.query
     res.render('user/welcome.html', {
-        id:welcomeId,
-        name:welcomeName,
-        gender:welcomeGender,
-        phone: welcomePhone,
-        mobile: welcomeMobile
+        id,
+        name,
+        gender,
+        phone,
+        mobile
     })
 }
 
