@@ -1,4 +1,4 @@
-const param = `idx,subject,nickname,hit`
+const param = `idx,subject,nickname,hit,content`
 const date = `DATE_FORMAT(date, '%Y-%m-%d') AS date`
 const timestamp = `DATE_FORMAT(date, '%Y-%m-%d %p %h:%i') AS date`
 
