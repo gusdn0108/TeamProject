@@ -10,12 +10,10 @@ const adminRouter = require('./admin')
 
 app.use(express.urlencoded({extended:true}))
 
-router.use('/user', userRouter)
-router.use(`/board`, Auth.checkUser, boardRouter)
+router.use('/user', mainController.localUser, userRouter)
+router.use(`/board`, Auth.checkUser,mainController.localUser, boardRouter)
 router.use('/admin', adminRouter)
-router.get(`/`, mainController.main)
-
-
+router.use(`/`, mainController.main)
 
 
 module.exports = router
