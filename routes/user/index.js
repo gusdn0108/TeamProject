@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router()
-const bodyParser = require('body-parser')
 
 const loginController = require('./user.Controller.js')
 const Auth = require('.././util/auth.js')

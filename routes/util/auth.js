@@ -5,8 +5,8 @@ let pool = require(`../../db`)
 
 
 exports.checkUser = (req, res, next) => {
-    let {user} = req.session
-    if(user != undefined) {
+    let { user } = req.session
+    if (user != undefined) {
         next()
     }
     else {
@@ -16,17 +16,16 @@ exports.checkUser = (req, res, next) => {
 
 exports.checkLevel = (req, res, next) => {
     let idx = [req.query.idx || req.body.idx]
-    let {nickname} = req.session.user
-    let {userlevel} = req.session.user
-    pool.getConnection((err,conn)=>{
-        conn.query(SQL.boardView,idx,(error,result)=>{
-            if(!error){
-                if(userlevel !== 3 || nickname == result[0].nickname ){
+    let { nickname, userlevel } = req.session.user
+    pool.getConnection((err, conn) => {
+        conn.query(SQL.boardView, idx, (error, result) => {
+            if (!error) {
+                if (userlevel !== 3 || nickname == result[0].nickname) {
                     next()
                 } else {
                     res.send(alertmove('/board/list', '권한이 없습니다.'))
                 }
-            } 
+            }
             conn.release()
         })
     })

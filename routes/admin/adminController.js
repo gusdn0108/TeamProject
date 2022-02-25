@@ -5,28 +5,39 @@ const { alertmove } = require("../util/alertmove");
 
 const isAdminHandler = (user) => {
   if (user) {
-    if (user.userlevel === 1) return true;
-    else return false;
+    if (user.userlevel === 1) { return true }
+    else { return false }
   } else {
-    return false;
+    return false
   }
-};
+}
 
 /**
  * 유저리스트페이지 : 유저리스트를 요청하는자가 운영자가 아닐경우 메인페이지로 이동
- * @param {*} req
+ * @param {*} req 
  * @param {*} res
  */
+
 exports.list = (req, res) => {
   try {
-    // const isAdmin = req.session.user.id==='admin'?true:false
     const admin = req.session.user;
     let { user } = req.session;
     if (isAdminHandler(admin)) {
       pool.getConnection((err, conn) => {
         conn.query(SQL.getAdminUserList, (error, result) => {
           if (!error) {
-            // const _result = Array.from(result)
+
+            //콜백 이슈
+            // const value = result.map((v,i)=>{
+            //   const element = v
+            //   console.log(element)
+            //   result.splice(i, 1, {
+            //     ...element,
+            //     button: `/admin/update?useridx=${element.useridx}`,
+            //   });
+            //   return element;
+            // })
+
             for (let i = 0; i < result.length; i++) {
               const element = result[i];
               result.splice(i, 1, {
@@ -34,11 +45,9 @@ exports.list = (req, res) => {
                 button: `/admin/update?useridx=${element.useridx}`,
               });
             }
-            //
+
             conn.query(SQL.boardList, (error2, result2) => {
               if (!error) {
-                const _result = [];
-
                 res.render(`admin/admin_list`, {
                   result,
                   user,
@@ -46,18 +55,16 @@ exports.list = (req, res) => {
                 });
               } else throw error;
             });
-
-            //
           } else throw error;
         });
-
         conn.release();
       });
     } else {
       res.send(alertmove("/", "최고관리자 권한이 없습니다."));
     }
   } catch (error) {
-    console.log(error);
+    console.log(error)
+    res.send(alertmove("/", `알 수 없는 이유로 접근이 불가능합니다. 관리자에게 문의해주세요.`))
   }
 };
 
@@ -72,22 +79,16 @@ exports.update = (req, res) => {
     const admin = req.session.user;
     if (isAdminHandler(admin)) {
       pool.getConnection((err, conn) => {
-        conn.query(SQL.getAdminUserOne, [useridx], (error, result) => {
+        conn.query(SQL.getAdminUserOne, useridx, (error, result) => {
           if (!error) {
-            let temp = {
-              useridx: useridx,
-              id: result[0].id,
-              userlevel: result[0].userlevel,
-              name: result[0].name,
-              gender: result[0].gender,
-              phone: result[0].phone,
-              mobile: result[0].mobile,
-              nickname: result[0].nickname,
-              birth: moment(result[0].birth).format("YYYY년MM월DD일"),
-            };
-
+            let birth = moment(result[0].birth).format("YYYY년MM월DD일")
+            delete result[0].pw //pw는 비공개라서 삭제 후 패킹
+            let user = {
+              ...result[0],
+              birth: birth
+            }
             res.render("admin/admin_update", {
-              user: temp,
+              user,
             });
           } else throw error;
         });
@@ -109,22 +110,19 @@ exports.update = (req, res) => {
 exports.updateAction = (req, res) => {
   try {
     const admin = req.session.user;
-    const userData = req.body;
+    const { userlevel, name, mobile, id } = req.body;
+    const param = [userlevel, name, mobile, id]
+
     if (isAdminHandler(admin)) {
       pool.getConnection((err, conn) => {
-        conn.query(
-          SQL.setAdminUserUpdate,
-          [userData.userlevel, userData.name, userData.mobile, userData.id],
-          (error, result) => {
-            if (!error) {
-              res.send(alertmove("/admin", "회원정보 수정을 완료하였습니다."));
-            } else {
-              console.log(error);
-              res.send(alertmove("/admin", "회원정보 수정을 실패하였습니다."));
-              // throw error ;
-            }
+        conn.query(SQL.setAdminUserUpdate, param, (error, result) => {
+          if (!error) {
+            res.send(alertmove("/admin", "회원정보 수정을 완료하였습니다."));
+          } else {
+            console.log(error);
+            res.send(alertmove("/admin", "회원정보 수정을 실패하였습니다."));
           }
-        );
+        });
         conn.release();
       });
     } else {
@@ -136,16 +134,15 @@ exports.updateAction = (req, res) => {
 };
 
 exports.userDelete = (req, res) => {
-  const { useridx } = req.body;
+  const {useridx} = req.body;
   const admin = req.session.user;
   if (isAdminHandler(admin)) {
     pool.getConnection((err, conn) => {
-      conn.query(SQL.setAdminDeleteUser, [useridx], (error, result) => {
+      conn.query(SQL.setAdminDeleteUser, useridx, (error, result) => {
         if (!error) {
           res.send(alertmove("/admin", "회원정보 삭제 하였습니다."));
         } else {
           res.send(alertmove("/admin", "회원정보 삭제에 실패하였습니다."));
-          // throw error ;
         }
       });
       conn.release();
@@ -162,8 +159,6 @@ exports.boardList = (req, res) => {
       conn.query(SQL.boardList, (error, result) => {
         if (!error) {
           const _result = [];
-          // result.forEach(v=>{date = v.date
-          // })
           for (let i = 0; i < result.length; i++) {
             const element = result[i];
             element.writeDate = moment().format("YYYY-MM-DD");
