@@ -60,7 +60,8 @@ a{
     position: relative;
 }
 
-.admin > h1{
+/*table & board manage */
+h1{
     text-align: center;
     font-size: 2rem;
     z-index:5;
@@ -76,9 +77,13 @@ table{
 
 table > tr,th{
     border-bottom:1px solid black;
-    height: 40px;
+    height: 45px;
     font-size: 20px;
     background-color:var(--background3);
+}
+
+table > tr,td > a{
+    font-weight:800;
 }
 
 table > tr,td{
@@ -86,45 +91,47 @@ table > tr,td{
     height:50px;
     border-bottom: 1px solid var(--background2);
 }
+ 
+tbody > tr.highlight{
+     background-color: #ede7f6;
+ }
+
+.adminBoard{
+    margin-top:100px;
+}
 
 table > tr,td:nth-child(1){
     width:10%;
 }
 
 table > tr,td:nth-child(2){
-    width:20%;
-    text-align:start;
+    width:30%;
     padding-left:30px;
+    text-align: center;
 }
 
 table > tr,td:nth-child(3){
-    width:20%;
-}
-
-table > tr,td:nth-child(4){
-    width:5%;
-    text-align:end;
-}
-
-table > tr,td:nth-child(5){
     width:10%;
 }
 
-table > tr,td > a{
-    font-weight:800;
+table > tr,td:nth-child(4){
+    width:20%;
+    text-align: center;
+}
+
+table > tr,td:nth-child(5){
+    width:20%;
 }
 
 table > tr,td > a:hover{
-   color:var(--accent3-color);
-   background-color:#000000;
-   border-radius: 10px;
-   padding:10px;
-}
+    color:var(--accent3-color);
+    background-color:#000000;
+    border-radius: 10px;
+    padding:10px;
+ }
 
-tbody > tr.highlight{
-    background-color: #ede7f6;
-}
 
+/* 어드민 수정하는 페이지 */
 .admin_profile{
     width:60%;
     font-family: 'Noto Serif KR', serif;
@@ -157,12 +164,30 @@ tbody > tr.highlight{
     padding:0px 20px;
 }
 
+.admin_profile ul li select {
+    width:20%;
+    font-size: 17px;
+    font-family: 'Noto Serif KR', serif;
+    border:solid 1px var(--background2);
+}
+
+.admin_profile ul li input {
+    width:20%;
+    font-size: 17px;
+    font-family: 'Noto Serif KR', serif;
+    border:solid 1px var(--background2);
+}
+
+.admin_profile ul li input:focus {
+    outline: none;
+}
+
+
 .admin_profile input#updatebtn,#dropbtn{
     background-color: #000000;
     color:var(--text2-color);
     width:25%;
     height:70px;
-    /* float:left; */
     font-family: 'Noto Serif KR', serif;
     font-size:30px;
     border: none;
