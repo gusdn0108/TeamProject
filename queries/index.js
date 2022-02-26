@@ -1,3 +1,6 @@
+//DB  컬럼 따로 빼서 변수에 담기 >>사용하는 SQL 구문이 적어서 가능한 방법
+//실제 업무 시에는 SQL 구문 그대로 적는 것이 좋다고 하심
+
 const param = `idx,subject,nickname,hit,content`
 const date = `DATE_FORMAT(date, '%Y-%m-%d') AS date`
 const timestamp = `DATE_FORMAT(date, '%Y-%m-%d %p %h:%i') AS date`
