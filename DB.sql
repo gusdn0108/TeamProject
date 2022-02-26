@@ -12,6 +12,7 @@ CREATE TABLE userAccount(
     gender CHAR(1),
     phone VARCHAR(11),
     mobile VARCHAR(11) NOT NULL,
+    active INT NOT NULL,
     PRIMARY KEY(useridx),
     UNIQUE KEY(nickname)
 );

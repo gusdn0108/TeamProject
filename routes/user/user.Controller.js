@@ -17,15 +17,20 @@ exports.login = (req, res) => {
 exports.loginAction = (req, res) => {
     try {
         const { id, pw } = req.body
-        let param = [id, pw]
+        let param = [ id, pw ]
 
         pool.getConnection((err, conn) => {
             conn.query(queries.loginSql, param, (err, result) => {
                 if (!err) {
                     if (result.length != 0) {
-                        req.session.user = { ...result[0] }
-                        res.send(alertmove('/', '로그인에 성공하였습니다.'))
-                    } else {
+                        if( result[0].active === 0){
+                            res.send(alertmove('/', '이용중지 회원입니다, 관리자에게 문의하세요'))
+                        }else{
+                            req.session.user = { ...result[0] }
+                            console.log(req.session.user )
+                            res.send(alertmove('/', '로그인에 성공하였습니다.'))
+                        }
+                    }else {
                         res.send(alertmove('/user/login', '로그인 정보를 확인해주세요.'))
                     }
                 }

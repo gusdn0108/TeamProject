@@ -47,10 +47,10 @@ a{
     top:120px;
     padding:10px 20px;
     font-size:15px;
-    color:var(--text1-color);
+    color:var(--text2-color);
     border-radius: 10px;
-    background-color: var(--background2);
-    box-shadow: 3px 3px 6px var(--background1);
+    background-color: var(--text1-color);
+    box-shadow: 3px 3px 6px var(--text1-color);
     z-index:10;
     font-weight: 100;
 }
@@ -183,21 +183,18 @@ table > tr,td > a:hover{
 }
 
 
-.admin_profile input#updatebtn,#dropbtn{
+.admin_profile input#updatebtn,#activeBtn{
     background-color: #000000;
     color:var(--text2-color);
-    width:25%;
-    height:70px;
+    width:20%;
+    height:55px;
     font-family: 'Noto Serif KR', serif;
-    font-size:30px;
+    font-size:20px;
+    float:right;
     border: none;
 }
 
-.admin_profile input#updatebtn{
-    float:right;
-}
-
-.admin_profile input#dropbtn:hover{
+.admin_profile input#activeBtn:hover{
     background-color: var(--accent3-color);
     color:var(--text1-color);
 }
@@ -206,7 +203,6 @@ table > tr,td > a:hover{
     background-color: var(--accent2-color);
 }
 
-.admin_profile input#dropbtn{
-    float:right;
-    margin-right:20px;
+.admin_profile input#activeBtn{
+    margin-right:10px;
 }

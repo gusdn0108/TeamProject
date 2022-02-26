@@ -40,10 +40,20 @@
             </ul>
             <input type="submit" value="회원정보 수정완료" id="updatebtn">
         </form>
+        {% if user.active == 1 %}
         <form method="post" action="/admin/delete">
-            <input value="{{user.useridx}}" name="useridx"style="display: none;" >
-            <input type="submit" value="이용정지" id="dropbtn">
+            <input value="{{user.useridx}}" name="useridx" style="display: none;" >
+            <input type="submit" value="이용정지" id="activeBtn">
         </form>
+        {% else %}
+        <form method="post" action="/admin/re-active">
+            <input value="{{user.useridx}}" name="useridx" style="display: none;" >
+            <input type="submit" value="이용정지 풀기" id="activeBtn">
+        </form>
+        {% endif %}
     </div>
+
+
+
 </body>
 </html>
