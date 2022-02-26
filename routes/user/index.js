@@ -4,7 +4,6 @@ const router = express.Router()
 const loginController = require('./user.Controller.js')
 const Auth = require('.././util/auth.js')
 
-//
 
 router.get('/login', loginController.login)
 router.post('/login', loginController.loginAction)

@@ -30,8 +30,5 @@ ALTER TABLE userAccount MODIFY mobile CHAR(11) UNIQUE;
 ALTER TABLE userAccount MODIFY phone CHAR(11) UNIQUE;
 ALTER TABLE userAccount MODIFY id VARCHAR(10) UNIQUE;
 
--- admin account level 1부여해주기
- UPDATE userAccount SET userlevel='1' WHERE id='admin';
 
- -- subject varchar(40)으로 바꿔주세요
- ALTER TABLE boardData MODIFY COLUMN subject VARCHAR(40) NOT NULL;
+INSERT INTO userAccount (id, pw, name, nickname, birth, gender, phone, mobile, userlevel) Values('admin','admin', 'admin','admin','19930101', 'F', '11111111111', '11111111111',1);
