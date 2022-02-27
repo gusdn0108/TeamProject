@@ -157,13 +157,20 @@ table > tr,td > a:hover{
    color:var(--accent3-color)
 }
 
+.btnbox{
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: 0 auto;
+}
+
+
 .board > button{
     height:50px;
     width:100px;
     font-size: 20px;
     font-family: 'Noto Serif KR', serif;
-    position: absolute;
-    right:5%;
     bottom:0%;
     border-style:none;
     background-color: var(--background2);

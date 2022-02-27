@@ -8,6 +8,8 @@ const timestamp = `DATE_FORMAT(date, '%Y-%m-%d %p %h:%i') AS date`
 
 const SQL = {
     boardList : `SELECT ${param},${date} FROM boardData`,
+    boardListPost : `SELECT ${param},${date} FROM boardData WHERE nickname LIKE ? OR idx LIKE ? OR subject LIKE ?`,
+
     boardWrite : 'INSERT INTO boardData (subject, nickname, content) Values (?,?,?)',
     boardView : `SELECT ${param},${timestamp} FROM boardData WHERE idx = ?`,
     boardHit: 'UPDATE boardData SET hit = ? WHERE idx = ?',

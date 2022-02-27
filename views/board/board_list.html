@@ -1,7 +1,8 @@
 {% include "../_header.html" %}
-    <link href="/board_style.css" rel="stylesheet" type="text/css">
-    <title>billionaire/board</title>
+<link href="/board_style.css" rel="stylesheet" type="text/css">
+<title>billionaire/board</title>
 </head>
+
 <body>
     {% include "../_navbar.html" %}
     <!-- 게시판 페이지 -->
@@ -16,7 +17,7 @@
                 <th>조회수</th>
             </tr>
             {% for item in result %}
-            <tr> 
+            <tr>
                 <td>{{item.idx}}</td>
                 <td><a href="/board/view?idx={{item.idx}}&hit={{item.hit+1}}">{{item.subject}}</a></td>
                 <td>{{item.nickname}}</td>
@@ -25,18 +26,24 @@
             </tr>
             {% endfor %}
         </table>
-
-        <button><a href="/board/write">글작성</a></button>
-
+        <div class="board btnbox">
+            <form method = "post" action="/board/list">
+                <select name ="search" id="search">
+                    <option value="nickname">작성자</option>
+                    <option value="subject">제목</option>
+                    <option value="idx">번호</option>
+                </select>
+                <input type="text" name="nickname" placeholder="검색할 내용을 입력해주세요">
+                <input type="submit" name="submit" value="검색" class ="btn">
+            </form>
+            <button><a href="/board/write">글작성</a></button>
+        </div>
         <div class="pager">
             <span>1</span>
             <span>2</span>
             <span>3</span>
             <span>4</span>
         </div>
-
-    
-        
     </div>
 </body>
 </html>

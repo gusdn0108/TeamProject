@@ -22,6 +22,29 @@ exports.list =
         }
     }
 
+    exports.listPost =
+    (req, res) => {
+        try {
+            const {nickname,idx,content} = req.body
+            const param = `%${nickname}%`||`%${idx}%`||`${content}`
+            const arrParam = [param,param,param]
+            pool.getConnection((err, conn) => {
+                conn.query(SQL.boardListPost, arrParam, (error, result) => {
+                    if (!error) {
+                        res.render(`board/board_list`, {
+                            result
+                        })
+                    } else throw error;
+                })
+                conn.release();
+            })
+        } catch (error) {
+            console.log(`게시판 페이지 에러 발생:  `, error)
+            res.send(alertmove("/", `알 수 없는 이유로 접근이 불가능합니다. 관리자에게 문의해주세요.`))
+        }
+    }
+
+
 
 exports.write =
     (req, res) => {
