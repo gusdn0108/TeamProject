@@ -82,6 +82,11 @@ exports.update = (req, res) => {
         conn.query(SQL.getAdminUserOne, useridx, (error, result) => {
           if (!error) {
             let birth = moment(result[0].birth).format("YYYY년MM월DD일")
+            if(result[0].active===1){
+              result[0].active = "활성화"
+            } else {
+              result[0].active = "비활성화"
+            }
             delete result[0].pw //pw는 비공개라서 삭제 후 패킹
             let user = {
               ...result[0],
