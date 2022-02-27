@@ -82,6 +82,11 @@ exports.update = (req, res) => {
         conn.query(SQL.getAdminUserOne, useridx, (error, result) => {
           if (!error) {
             let birth = moment(result[0].birth).format("YYYY년MM월DD일")
+            if(result[0].active===1){
+              result[0].active = "O"
+            } else {
+              result[0].active = "X"
+            }
             delete result[0].pw //pw는 비공개라서 삭제 후 패킹
             let user = {
               ...result[0],
@@ -112,6 +117,7 @@ exports.updateAction = (req, res) => {
     const admin = req.session.user;
     const { userlevel, name, mobile, id } = req.body;
     const param = [userlevel, name, mobile, id]
+
     if (isAdminHandler(admin)) {
       pool.getConnection((err, conn) => {
         conn.query(SQL.setAdminUserUpdate, param, (error, result) => {
