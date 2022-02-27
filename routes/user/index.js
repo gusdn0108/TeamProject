@@ -16,6 +16,7 @@ router.get('/profile', Auth.checkUser, loginController.profile)
 router.get('/welcome', loginController.welcome)
 
 router.get('/logout', loginController.logout)
+router.get('/resign', loginController.resign)
 
 
 

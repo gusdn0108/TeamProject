@@ -10,8 +10,10 @@
             <ul class="snb">
                 {% if user %}
                 <li><a href="/user/logout">Logout</a></li>
+                <li><a href="/user/resign">Resign</a></li>
                 {% elseif result %}
-                <li><a href="/user/logout">Logout</a></li>   
+                <li><a href="/user/logout">Logout</a></li> 
+                <li><a href="/user/resign">Resign</a></li>
                 {% else %}
                 <li><a href="/user/join">JoinUs</a></li>
                 <li><a href="/user/login">Login</a></li>

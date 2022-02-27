@@ -21,6 +21,7 @@ const SQL = {
     profileCheck : `select * from userAccount where id = ?`,
     checkId : `select * from userAccount where id=? or nickname=? or phone=? or mobile=?`,
     addData : `insert into userAccount(id, pw, name, nickname, birth, gender, phone, mobile, userlevel, active) values(?,?, ?, ?,?, ?, ?, ?,3,1)`,
+    userResign : `DELETE from userAccount WHERE id =?`,
     setAdminUserUpdate:'UPDATE userAccount SET userlevel=?, name=?, mobile=?  WHERE id = ?',
     setAdminDeleteUser : 'UPDATE userAccount SET active=0 WHERE useridx =?',
     setAdminReactiveUser : 'UPDATE userAccount SET active=1 WHERE useridx = ?'
