@@ -112,6 +112,7 @@ exports.updateAction = (req, res) => {
     const admin = req.session.user;
     const { userlevel, name, mobile, id } = req.body;
     const param = [userlevel, name, mobile, id]
+
     if (isAdminHandler(admin)) {
       pool.getConnection((err, conn) => {
         conn.query(SQL.setAdminUserUpdate, param, (error, result) => {
