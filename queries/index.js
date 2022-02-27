@@ -17,14 +17,14 @@ const SQL = {
     getAdminUserList: 'SELECT * FROM userAccount',
     getAdminUserOne: 'SELECT * FROM userAccount WHERE useridx=?',
 
-    loginSql : `select * from userAccount where id = ? and pw = ?;`,
+    loginSql : `select * from userAccount where id = ? and pw = ?`,
     profileCheck : `select * from userAccount where id = ?`,
     checkId : `select * from userAccount where id=? or nickname=? or phone=? or mobile=?`,
-    addData : `insert into userAccount(id, pw, name, nickname, birth, gender, phone, mobile, userlevel) values(?,?, ?, ?,?, ?, ?, ?,3)`,
+    addData : `insert into userAccount(id, pw, name, nickname, birth, gender, phone, mobile, userlevel, active) values(?,?, ?, ?,?, ?, ?, ?,3,1)`,
     setAdminUserUpdate:'UPDATE userAccount SET userlevel=?, name=?, mobile=?  WHERE id = ?',
-    setAdminDeleteUser : 'DELETE FROM userAccount WHERE useridx = ?',
+    setAdminDeleteUser : 'UPDATE userAccount SET active=0 WHERE useridx =?',
+    setAdminReactiveUser : 'UPDATE userAccount SET active=1 WHERE useridx = ?'
 }
-
 
 
 module.exports = SQL

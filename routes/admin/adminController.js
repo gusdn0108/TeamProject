@@ -141,9 +141,9 @@ exports.userDelete = (req, res) => {
       pool.getConnection((err, conn) => {
         conn.query(SQL.setAdminDeleteUser, useridx, (error, result) => {
           if (!error) {
-            res.send(alertmove("/admin", "회원정보 삭제 하였습니다."));
+            res.send(alertmove("/admin", "해당 회원을 이용중지하였습니다."));
           } else {
-            res.send(alertmove("/admin", "회원정보 삭제에 실패하였습니다."));
+            res.send(alertmove("/admin", "회원 이용중지에 실패하였습니다."));
           }
         });
         conn.release();
@@ -156,6 +156,31 @@ exports.userDelete = (req, res) => {
     res.send(alertmove("/", `알 수 없는 이유로 등급 변경이 불가능합니다. 콘솔창의 에러 내용을 확인해주세요`))
   }
 };
+
+exports.reActive = (req, res) => {
+  try{
+    const { useridx } = req.body;
+    const admin = req.session.user;
+    if(isAdminHandler(admin)) {
+      pool.getConnection((err,conn)=>{
+        conn.query(SQL.setAdminReactiveUser, useridx, (error,result)=>{
+          if(!error){
+            res.send(alertmove(`/admin`,'해당 회원 이용 활성화 완료'))
+          } else {
+            res.send(alertmove('/admin','해당 회원 이용 활성화 실패'))
+          }
+        })
+        conn.release()
+      })
+    }else {
+      res.send(alertmove("/", "최고관리자 권한이 없습니다."));
+    }
+  } catch (error) {
+    console.log(`어드민 유저관리 페이지 유저 active error 발생:  `, error)
+    res.send(alertmove("/", `알 수 없는 이유로 이용 활성화가 불가능합니다. 콘솔창의 에러 내용을 확인해주세요`))
+  }
+}
+
 
 exports.boardList = (req, res) => {
   try {
