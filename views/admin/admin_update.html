@@ -37,10 +37,13 @@
                 <li>
                     <span>핸드폰번호 : </span><input name="mobile" value={{user.mobile}} />
                 </li>
+                <li>
+                    <span>활성화여부 : </span> {{user.active}}
+                </li>
             </ul>
             <input type="submit" value="회원정보 수정완료" id="updatebtn">
         </form>
-        {% if user.active == 1 %}
+        {% if user.active == "이용중" %}
         <form method="post" action="/admin/delete">
             <input value="{{user.useridx}}" name="useridx" style="display: none;" >
             <input type="submit" value="이용정지" id="activeBtn">
