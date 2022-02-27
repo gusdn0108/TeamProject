@@ -140,3 +140,19 @@ exports.logout = (req, res) => {
     }
 }
 
+exports.resign = (req, res) => {
+    try {
+        pool.getConnection((err, conn) => {
+            let param = [req.session.user.id]
+            conn.query(queries.userResign, param, (error, result) => {
+                req.session.destroy(() => {
+                    req.session
+                    res.send(alertmove('/', '회원 탈퇴가 완료 되었습니다.'))
+                })
+            })
+        })
+    } catch (error) {
+        console.log(`회원탈퇴 에러 발생:  `, error)
+        res.send(alertmove("/", `알 수 없는 이유로 회원탈퇴가 불가능합니다. 관리자에게 문의해주세요.`))
+    }
+}
