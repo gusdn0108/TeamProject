@@ -26,18 +26,6 @@ exports.list = (req, res) => {
       pool.getConnection((err, conn) => {
         conn.query(SQL.getAdminUserList, (error, result) => {
           if (!error) {
-
-            //콜백 이슈
-            // const value = result.map((v,i)=>{
-            //   const element = v
-            //   console.log(element)
-            //   result.splice(i, 1, {
-            //     ...element,
-            //     button: `/admin/update?useridx=${element.useridx}`,
-            //   });
-            //   return element;
-            // })
-
             for (let i = 0; i < result.length; i++) {
               const element = result[i];
               result.splice(i, 1, {
