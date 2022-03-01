@@ -2,7 +2,7 @@ const express = require('express')
 const nunjucks = require('nunjucks')
 const router = require(`./routes`)
 const app = express()
-const port = process.env.PORT || 3001
+const port = process.env.PORT || 3000
 
 
 app.set('view engine', 'html')
